@@ -1,6 +1,11 @@
 import React, { Suspense } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 import { Nav } from "../components/nav";
+
+const queryClient = new QueryClient();
 
 const TanStackRouterDevtools = import.meta.env.PROD
   ? () => null // Render nothing in production
@@ -8,24 +13,25 @@ const TanStackRouterDevtools = import.meta.env.PROD
       // Lazy load in development
       import("@tanstack/router-devtools").then((res) => ({
         default: res.TanStackRouterDevtools,
-        // For Embedded Mode
-        // default: res.TanStackRouterDevtoolsPanel
       })),
     );
 
 export const Route = createRootRoute({
   component: () => (
-    <main className="m-2">
-      <Nav />
+    <QueryClientProvider client={queryClient}>
+      <main className="m-2">
+        <Nav />
 
-      <section>
-        <Outlet />
-      </section>
-      <footer>
-        <Suspense>
-          <TanStackRouterDevtools />
-        </Suspense>
-      </footer>
-    </main>
+        <section>
+          <Outlet />
+        </section>
+        <footer>
+          <Suspense>
+            <TanStackRouterDevtools />
+            <ReactQueryDevtools />
+          </Suspense>
+        </footer>
+      </main>
+    </QueryClientProvider>
   ),
 });
