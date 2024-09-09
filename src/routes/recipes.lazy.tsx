@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
+import { dataURL } from "../utils";
 
 type Recipe = {
   title: string;
@@ -20,7 +21,7 @@ const Recipes = () => {
   const { isError, isPending, data, error } = useQuery({
     queryKey: ["recipes"],
     queryFn: async (): Promise<Recipes> => {
-      const response = await fetch("./data/recipes.json");
+      const response = await fetch(`${dataURL}/recipes.json`);
       if (!response.ok) {
         throw new Error("Error fetching recipes");
       }
