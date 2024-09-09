@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
-import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
+import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { Nav } from "../components/nav";
 
 const TanStackRouterDevtools = import.meta.env.PROD
   ? () => null // Render nothing in production
@@ -14,15 +15,17 @@ const TanStackRouterDevtools = import.meta.env.PROD
 
 export const Route = createRootRoute({
   component: () => (
-    <>
-      <div>
-        <Link to="/">Home</Link>
-        <Link to="/recipes">Recipes</Link>
-      </div>
-      <Outlet />
-      <Suspense>
-        <TanStackRouterDevtools />
-      </Suspense>
-    </>
+    <main className="m-2">
+      <Nav />
+
+      <section>
+        <Outlet />
+      </section>
+      <footer>
+        <Suspense>
+          <TanStackRouterDevtools />
+        </Suspense>
+      </footer>
+    </main>
   ),
 });
