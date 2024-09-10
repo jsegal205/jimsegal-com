@@ -19,10 +19,12 @@ const TanStackRouterDevtools = import.meta.env.PROD
 export const Route = createRootRoute({
   component: () => (
     <QueryClientProvider client={queryClient}>
-      <main className="m-2">
-        <Nav />
+      <main className="m-4">
+        <header className="pb-4 px-4 border-b-2 border-slate-400">
+          <Nav />
+        </header>
 
-        <section>
+        <section className="p-4">
           <Outlet />
         </section>
         <footer>

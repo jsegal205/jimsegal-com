@@ -21,16 +21,20 @@ const Recipes = () => {
 
   return (
     <>
-      <h2>Recipes</h2>
-      {data.map((recipe: Recipe) => (
-        <Link
-          key={recipe.slug}
-          to="/recipes/$slug"
-          params={{ slug: recipe.slug }}
-        >
-          {recipe.title}
-        </Link>
-      ))}
+      <h1 className="text-3xl mb-2">Recipes</h1>
+      <ol className="flex flex-col">
+        {data.map((recipe: Recipe) => (
+          <li key={recipe.slug}>
+            <Link
+              className="underline hover:decoration-pink-500 hover:text-pink-500"
+              to="/recipes/$slug"
+              params={{ slug: recipe.slug }}
+            >
+              {recipe.title}
+            </Link>
+          </li>
+        ))}
+      </ol>
     </>
   );
 };

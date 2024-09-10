@@ -9,11 +9,16 @@ const routes: Routes = [
 ];
 
 export const Nav = () => (
-  <nav className="border-b-2 border-slate-400">
+  <nav>
     <ol className="flex flex-row">
       {routes.map(({ route, title }: Route) => (
-        <li key={title} className="mr-2 last:mr-0 hover:underline">
-          <Link to={route}>{title}</Link>
+        <li key={title} className="mr-2 last:mr-0">
+          <Link
+            className="underline hover:decoration-pink-500 hover:text-pink-500"
+            to={route}
+          >
+            {title}
+          </Link>
         </li>
       ))}
     </ol>
