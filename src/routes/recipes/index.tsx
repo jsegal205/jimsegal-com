@@ -21,7 +21,7 @@ const Recipes = () => {
 
   return (
     <>
-      <h1 className="text-3xl mb-2">Recipes</h1>
+      <h1>Recipes</h1>
       <ol className="flex flex-col">
         {data.map((recipe: Recipe) => (
           <li key={recipe.slug}>

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import Markdown from "react-markdown";
 
 import { fetchRecipeBySlug } from "@/api/recipes";
 import { Loading } from "@/components/loading";
@@ -30,15 +31,32 @@ const Recipe = () => {
       <h1>{title}</h1>
       {referenceLink ? <label>{referenceLink}</label> : null}
       <h2>Ingredients</h2>
-      {ingredients}
+      <CustomMarkdown>{ingredients}</CustomMarkdown>
       <h2>Directions</h2>
-      {directions}
+      <CustomMarkdown>{directions}</CustomMarkdown>
       {notes ? (
         <>
           <h2>Notes</h2>
-          {notes}
+          <CustomMarkdown>{notes}</CustomMarkdown>
         </>
       ) : null}
     </>
   );
 };
+
+const CustomMarkdown = ({ children }: { children: string }) => (
+  <Markdown
+    components={{
+      ul(props) {
+        const { node, ...rest } = props;
+        return <ul className="pl-8 list-disc" {...rest} />;
+      },
+      ol(props) {
+        const { node, ...rest } = props;
+        return <ul className="pl-8 list-decimal" {...rest} />;
+      },
+    }}
+  >
+    {children}
+  </Markdown>
+);
