@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { dataURL } from "../utils";
+import { dataURL } from "../../utils";
 
 type Recipe = {
   title: string;
@@ -13,7 +13,7 @@ type Recipe = {
 
 type Recipes = Array<Recipe>;
 
-export const Route = createFileRoute("/recipes")({
+export const Route = createFileRoute("/recipes/")({
   component: () => <Recipes />,
 });
 
@@ -40,6 +40,7 @@ const Recipes = () => {
 
   return (
     <>
+      <div>jimmmm</div>
       <h2>Recipes</h2>
       {data.map((recipe: Recipe) => (
         <div key={recipe.slug}>{recipe.title}</div>
