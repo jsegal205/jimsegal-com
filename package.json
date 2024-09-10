@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prettier": "pnpm exec prettier . --write"
+    "prettier": "pnpm exec prettier . --write",
+    "ci": "pnpm install --frozen-lockfile"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.55.4",
