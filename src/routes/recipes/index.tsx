@@ -1,34 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-import { dataURL } from "../../utils";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
-type Recipe = {
-  title: string;
-  ingredients: string;
-  directions: string;
-  notes?: string;
-  referenceLink?: string;
-  slug: string;
-};
-
-type Recipes = Array<Recipe>;
+import { fetchAllRecipes } from "../../api/recipes";
+import { type Recipe } from "../../api/recipes";
 
 export const Route = createFileRoute("/recipes/")({
   component: () => <Recipes />,
 });
 
 const Recipes = () => {
-  const { isError, isPending, data, error } = useQuery({
-    queryKey: ["recipes"],
-    queryFn: async (): Promise<Recipes> => {
-      const response = await fetch(`${dataURL}/recipes.json`);
-      if (!response.ok) {
-        throw new Error("Error fetching recipes");
-      }
-
-      return response.json();
-    },
-  });
+  const { isError, isPending, data, error } = fetchAllRecipes();
 
   if (isPending) {
     return <div>Loading...</div>;
@@ -40,10 +20,15 @@ const Recipes = () => {
 
   return (
     <>
-      <div>jimmmm</div>
       <h2>Recipes</h2>
       {data.map((recipe: Recipe) => (
-        <div key={recipe.slug}>{recipe.title}</div>
+        <Link
+          key={recipe.slug}
+          to="/recipes/$slug"
+          params={{ slug: recipe.slug }}
+        >
+          {recipe.title}
+        </Link>
       ))}
     </>
   );
