@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import { Nav } from "../components/nav";
+import { Nav } from "@/components/nav";
 
 const queryClient = new QueryClient();
 

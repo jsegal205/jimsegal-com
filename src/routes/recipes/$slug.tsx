@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { fetchRecipeBySlug } from "../../api/recipes";
-import { Loading } from "../../components/loading";
+
+import { fetchRecipeBySlug } from "@/api/recipes";
+import { Loading } from "@/components/loading";
 
 export const Route = createFileRoute("/recipes/$slug")({
   component: () => <Recipe />,
