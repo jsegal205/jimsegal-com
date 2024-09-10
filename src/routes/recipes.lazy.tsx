@@ -42,7 +42,7 @@ const Recipes = () => {
     <>
       <h2>Recipes</h2>
       {data.map((recipe: Recipe) => (
-        <div>{recipe.title}</div>
+        <div key={recipe.slug}>{recipe.title}</div>
       ))}
     </>
   );
