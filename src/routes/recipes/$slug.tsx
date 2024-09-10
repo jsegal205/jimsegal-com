@@ -23,11 +23,22 @@ const Recipe = () => {
     return <div>Not found</div>;
   }
 
-  const recipe = data[0];
+  const { title, referenceLink, ingredients, directions, notes } = data[0];
 
   return (
     <>
-      <h2>{recipe.title}</h2>
+      <h1>{title}</h1>
+      {referenceLink ? <label>{referenceLink}</label> : null}
+      <h2>Ingredients</h2>
+      {ingredients}
+      <h2>Directions</h2>
+      {directions}
+      {notes ? (
+        <>
+          <h2>Notes</h2>
+          {notes}
+        </>
+      ) : null}
     </>
   );
 };
