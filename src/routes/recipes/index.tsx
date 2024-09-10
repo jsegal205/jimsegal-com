@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { fetchAllRecipes } from "../../api/recipes";
 import { type Recipe } from "../../api/recipes";
+import { Loading } from "../../components/loading";
 
 export const Route = createFileRoute("/recipes/")({
   component: () => <Recipes />,
@@ -11,7 +12,7 @@ const Recipes = () => {
   const { isError, isPending, data, error } = fetchAllRecipes();
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (isError) {

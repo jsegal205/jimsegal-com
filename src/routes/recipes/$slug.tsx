@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { fetchRecipeBySlug } from "../../api/recipes";
+import { Loading } from "../../components/loading";
 
 export const Route = createFileRoute("/recipes/$slug")({
   component: () => <Recipe />,
@@ -10,7 +11,7 @@ const Recipe = () => {
   const { isError, isPending, data, error } = fetchRecipeBySlug(slug);
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (isError) {
