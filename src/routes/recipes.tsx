@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { dataURL } from "../utils";
 
 type Recipe = {
@@ -13,7 +13,7 @@ type Recipe = {
 
 type Recipes = Array<Recipe>;
 
-export const Route = createLazyFileRoute("/recipes")({
+export const Route = createFileRoute("/recipes")({
   component: () => <Recipes />,
 });
 
