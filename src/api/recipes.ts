@@ -18,7 +18,9 @@ export const fetchAllRecipes = () => {
 export const fetchRecipeBySlug = (slug: string) => {
   return allRecipes({
     selectCB: (data: Recipes) => {
-      return data.filter((recipe) => recipe.slug === slug);
+      return data.filter(
+        (recipe) => recipe.slug.toLowerCase() === slug.toLowerCase(),
+      );
     },
   });
 };
@@ -34,6 +36,19 @@ const allRecipes = ({ selectCB } = { selectCB: (data: Recipes) => data }) => {
 
       return response.json();
     },
-    select: (data) => selectCB(data),
+    select: (data) => {
+      const sorted = data.sort(({ title: titleA }, { title: titleB }) => {
+        if (titleA < titleB) {
+          return -1;
+        }
+        if (titleA > titleB) {
+          return 1;
+        }
+
+        return 0;
+      });
+
+      return selectCB(sorted);
+    },
   });
 };
