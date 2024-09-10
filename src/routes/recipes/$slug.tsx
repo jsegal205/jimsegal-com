@@ -1,8 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import Markdown from "react-markdown";
 
 import { fetchRecipeBySlug } from "@/api/recipes";
 import { Loading } from "@/components/loading";
+import { OpenExternal } from "@/components/open-external";
 
 export const Route = createFileRoute("/recipes/$slug")({
   component: () => <Recipe />,
@@ -29,7 +30,14 @@ const Recipe = () => {
   return (
     <>
       <h1>{title}</h1>
-      {referenceLink ? <label>{referenceLink}</label> : null}
+      {referenceLink ? (
+        <Link
+          className="underline hover:decoration-pink-500 hover:text-pink-500"
+          to={referenceLink}
+        >
+          <OpenExternal text={referenceLink} />
+        </Link>
+      ) : null}
       <h2>Ingredients</h2>
       <CustomMarkdown>{ingredients}</CustomMarkdown>
       <h2>Directions</h2>
