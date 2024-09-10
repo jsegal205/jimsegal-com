@@ -1,3 +1,3 @@
 export const dataURL: string = import.meta.env.PROD
-  ? "some-github-url-fix-me-later"
+  ? "https://raw.githubusercontent.com/jsegal205/jimsegal-com/main/public/data"
   : `${window.location.origin}/data`;
