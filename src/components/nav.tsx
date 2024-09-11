@@ -9,7 +9,7 @@ const routes: Routes = [
 ];
 
 export const Nav = () => (
-  <nav>
+  <nav className="place-content-center">
     <ol className="flex flex-row">
       {routes.map(({ route, title }: Route) => (
         <li key={title} className="mr-2 last:mr-0">

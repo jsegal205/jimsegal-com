@@ -1,6 +1,6 @@
 export const OpenExternal = ({ text }: { text: string }) => {
   return (
-    <label className="group flex ">
+    <label className="group flex">
       {text}
       <Icon />
     </label>

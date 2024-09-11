@@ -20,7 +20,8 @@ export const Route = createRootRoute({
   component: () => (
     <QueryClientProvider client={queryClient}>
       <main className="m-4">
-        <header className="pb-4 px-4 border-b-2 border-slate-400">
+        <header className="pb-4 px-4 border-b-2 border-slate-400 flex justify-between">
+          <label className="text-2xl">Jim Segal</label>
           <Nav />
         </header>
 
