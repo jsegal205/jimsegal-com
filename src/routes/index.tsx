@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
 
 const Home = () => {
   return (
-    <section className="flex flex-col items-center h-screen justify-center md:justify-evenly md:flex-row">
+    <section className="flex flex-col items-center md:justify-evenly md:flex-row">
       <article className="max-w-[400px] min-w-[200px]">
         <img
           src="/assets/jim.jpg"
@@ -20,14 +20,14 @@ const Home = () => {
       <article className="text-center">
         <div className="mb-4">
           <h1>Jim Segal</h1>
-          <p>I'mma jim</p>
+          {/* <p>I'mma jim</p>
           <nav>
             <ul className="flex flex-row justify-evenly">
               <li>github</li>
               <li>email</li>
               <li>linkedin</li>
             </ul>
-          </nav>
+          </nav> */}
         </div>
         <h4 className="mb-2">Projects</h4>
         {projects.map((project) => (

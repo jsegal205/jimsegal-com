@@ -18,9 +18,10 @@ const TanStackRouterDevtools = import.meta.env.PROD
 export const Route = createRootRoute({
   component: () => (
     <QueryClientProvider client={queryClient}>
-      <main>
+      <main className="min-h-screen flex flex-col justify-between">
         <Outlet />
-        <footer>
+
+        <footer className="self-bottom">
           <div className="flex justify-center text-xs">
             <span>Made with</span>
             <Icon className="mx-1 my-auto h-3 w-3 fill-red-500" type="heart" />
