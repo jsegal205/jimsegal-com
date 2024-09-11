@@ -3,7 +3,7 @@ import Markdown from "react-markdown";
 
 import { fetchRecipeBySlug } from "@/api/recipes";
 import { Loading } from "@/components/loading";
-import { OpenExternal } from "@/components/open-external";
+import { OpenExternal } from "@/icons";
 
 export const Route = createFileRoute("/_withnav/recipes/$slug")({
   component: () => <Recipe />,
@@ -32,10 +32,15 @@ const Recipe = () => {
       <h1>{title}</h1>
       {referenceLink ? (
         <Link
-          className="underline hover:decoration-pink-500 hover:text-pink-500"
+          className="underline hover:decoration-pink-500 hover:text-pink-500 hover:fill-pink-500"
           to={referenceLink}
         >
-          <OpenExternal text={referenceLink} />
+          <div className="flex">
+            {referenceLink}
+            <div className="ml-1 h-6 w-6">
+              <OpenExternal />
+            </div>
+          </div>
         </Link>
       ) : null}
       <div className="flex flex-col justify-between sm:flex-row">
