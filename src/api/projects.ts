@@ -1,9 +1,8 @@
-import { ReactNode } from "react";
-import { RecipeBook } from "@/icons";
+import { type IconTypes } from "@/icons";
 
-export type Project = { title: string; route: string; icon: ReactNode };
+export type Project = { title: string; route: string; icon: IconTypes };
 export type Projects = Array<Project>;
 
 export const projects: Projects = [
-  { title: "Recipes", route: "/recipes", icon: RecipeBook() },
+  { title: "Recipes", route: "/recipes", icon: "recipe-book" },
 ];

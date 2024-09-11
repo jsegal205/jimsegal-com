@@ -3,7 +3,7 @@ import Markdown from "react-markdown";
 
 import { fetchRecipeBySlug } from "@/api/recipes";
 import { Loading } from "@/components/loading";
-import { OpenExternal } from "@/icons";
+import { Icon } from "@/icons";
 
 export const Route = createFileRoute("/_withnav/recipes/$slug")({
   component: () => <Recipe />,
@@ -37,9 +37,7 @@ const Recipe = () => {
         >
           <div className="flex">
             {referenceLink}
-            <div className="ml-1 h-6 w-6">
-              <OpenExternal />
-            </div>
+            <Icon className="ml-1 h-6 w-6" type="open-external" />
           </div>
         </Link>
       ) : null}

@@ -1,7 +1,8 @@
 import React, { Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Icon } from "@/icons";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,21 @@ export const Route = createRootRoute({
       <main>
         <Outlet />
         <footer>
+          <div className="flex justify-center text-xs">
+            <span>Made with</span>
+            <Icon
+              className="mx-1 items-baseline h-3 w-3 fill-red-500"
+              type="heart"
+            />
+            <span className="mr-1">by Jim Segal</span>(
+            <a
+              href="https://github.com/jsegal205/jimsegal-com"
+              className="mr-1 underline hover:decoration-pink-500 hover:text-pink-500 hover:fill-pink-500"
+            >
+              source
+            </a>
+            on Github)
+          </div>
           <Suspense>
             <TanStackRouterDevtools />
             <ReactQueryDevtools />

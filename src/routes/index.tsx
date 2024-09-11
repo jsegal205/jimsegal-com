@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { projects } from "@/api/projects";
 import { type Project } from "@/api/projects";
+import { Icon } from "@/icons";
 
 export const Route = createFileRoute("/")({
   component: () => <Home />,
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/")({
 
 const Home = () => {
   return (
-    <section className="flex flex-col items-center h-screen justify-center md:justify-evenly md:flex-row  ">
+    <section className="flex flex-col items-center h-screen justify-center md:justify-evenly md:flex-row">
       <article className="max-w-[400px] min-w-[200px]">
         <img
           src="/assets/jim.jpg"
@@ -43,8 +44,7 @@ const Project = ({ title, route, icon }: Project) => {
       to={route}
       className="border-2 border-slate-500 rounded p-2 flex flex-row justify-evenly items-center underline hover:decoration-pink-500 hover:text-pink-500 hover:border-pink-500 hover:fill-pink-500"
     >
-      <div className="h-8 w-8">{icon}</div>
-
+      <Icon className="h-8 w-8" type={icon} />
       {title}
     </Link>
   );
