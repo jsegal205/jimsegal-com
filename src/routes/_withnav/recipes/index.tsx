@@ -4,7 +4,7 @@ import { fetchAllRecipes } from "@/api/recipes";
 import { type Recipe } from "@/api/recipes";
 import { Loading } from "@/components/loading";
 
-export const Route = createFileRoute("/recipes/")({
+export const Route = createFileRoute("/_withnav/recipes/")({
   component: () => <Recipes />,
 });
 

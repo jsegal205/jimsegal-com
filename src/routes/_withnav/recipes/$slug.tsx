@@ -5,7 +5,7 @@ import { fetchRecipeBySlug } from "@/api/recipes";
 import { Loading } from "@/components/loading";
 import { OpenExternal } from "@/components/open-external";
 
-export const Route = createFileRoute("/recipes/$slug")({
+export const Route = createFileRoute("/_withnav/recipes/$slug")({
   component: () => <Recipe />,
 });
 
