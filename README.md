@@ -24,3 +24,7 @@ pnpm run dev
 ```
 
 Then navigate to the route provided in console.
+
+## Live site
+
+You can view up to date `main` branch changes at [http://new.jimsegal.com](http://new.jimsegal.com)
