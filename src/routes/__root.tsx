@@ -17,7 +17,7 @@ const TanStackRouterDevtools = import.meta.env.PROD
 export const Route = createRootRoute({
   component: () => (
     <QueryClientProvider client={queryClient}>
-      <main className="m-4">
+      <main>
         <Outlet />
         <footer>
           <Suspense>
