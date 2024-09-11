@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
+import { Outlet, createRootRoute } from "@tanstack/react-router";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Icon } from "@/icons";
 
@@ -23,10 +23,7 @@ export const Route = createRootRoute({
         <footer>
           <div className="flex justify-center text-xs">
             <span>Made with</span>
-            <Icon
-              className="mx-1 items-baseline h-3 w-3 fill-red-500"
-              type="heart"
-            />
+            <Icon className="mx-1 my-auto h-3 w-3 fill-red-500" type="heart" />
             <span className="mr-1">by Jim Segal</span>(
             <a
               href="https://github.com/jsegal205/jimsegal-com"
@@ -34,7 +31,7 @@ export const Route = createRootRoute({
             >
               source
             </a>
-            on Github)
+            on <Icon type="github" className="ml-1 my-auto h-3 w-3" />)
           </div>
           <Suspense>
             <TanStackRouterDevtools />
