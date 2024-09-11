@@ -38,7 +38,17 @@ const Recipe = () => {
           <OpenExternal text={referenceLink} />
         </Link>
       ) : null}
-      <h2>Ingredients</h2>
+      <div className="flex flex-col justify-between sm:flex-row">
+        <h2>Ingredients</h2>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => {
+            navigator.clipboard.writeText(ingredients.replace(/-\s/gm, ""));
+          }}
+        >
+          Copy Ingredients
+        </button>
+      </div>
       <CustomMarkdown>{ingredients}</CustomMarkdown>
       <h2>Directions</h2>
       <CustomMarkdown>{directions}</CustomMarkdown>
