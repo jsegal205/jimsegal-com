@@ -3,10 +3,7 @@ import { Link } from "@tanstack/react-router";
 type Route = { title: string; route: string };
 type Routes = Array<Route>;
 
-const routes: Routes = [
-  { title: "Home", route: "/" },
-  { title: "Recipes", route: "/recipes" },
-];
+const routes: Routes = [{ title: "Recipes", route: "/recipes" }];
 
 export const Nav = () => (
   <nav className="place-content-center">

@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { Nav } from "@/components/nav";
@@ -21,7 +21,13 @@ export const Route = createRootRoute({
     <QueryClientProvider client={queryClient}>
       <main className="m-4">
         <header className="pb-4 px-4 border-b-2 border-slate-400 flex justify-between">
-          <label className="text-2xl">Jim Segal</label>
+          <Link
+            className="text-2xl hover:underline hover:decoration-pink-500 hover:text-pink-500"
+            to="/"
+          >
+            Jim Segal
+          </Link>
+
           <Nav />
         </header>
 
