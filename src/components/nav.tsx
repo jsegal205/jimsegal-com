@@ -1,14 +1,11 @@
 import { Link } from "@tanstack/react-router";
-
-type Route = { title: string; route: string };
-type Routes = Array<Route>;
-
-const routes: Routes = [{ title: "Recipes", route: "/recipes" }];
+import { projects } from "@/api/projects";
+import { type Project } from "@/api/projects";
 
 export const Nav = () => (
   <nav className="place-content-center">
     <ol className="flex flex-row">
-      {routes.map(({ route, title }: Route) => (
+      {projects.map(({ route, title }: Project) => (
         <li key={title} className="mr-2 last:mr-0">
           <Link
             className="underline hover:decoration-pink-500 hover:text-pink-500"
