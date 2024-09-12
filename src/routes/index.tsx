@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
 
 const Home = () => {
   return (
-    <section className="flex flex-col items-center md:justify-evenly md:flex-row">
+    <section className="h-screen flex flex-col items-center md:justify-evenly md:flex-row">
       <article className="max-w-[400px] min-w-[200px]">
         <img
           src="/assets/jim.jpg"
