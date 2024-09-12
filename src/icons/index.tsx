@@ -1,9 +1,15 @@
 import { Github } from "./github";
 import { Heart } from "./heart";
+import { Meeple } from "./meeple";
 import { OpenExternal } from "./open-external";
 import { RecipeBook } from "./recipe-book";
 
-export type IconTypes = "github" | "heart" | "open-external" | "recipe-book";
+export type IconTypes =
+  | "github"
+  | "heart"
+  | "meeple"
+  | "open-external"
+  | "recipe-book";
 type Icon = {
   className?: string;
   type: IconTypes;
@@ -12,6 +18,7 @@ type Icon = {
 const typeToSVG = {
   github: Github(),
   heart: Heart(),
+  meeple: Meeple(),
   "open-external": OpenExternal(),
   "recipe-book": RecipeBook(),
 };
