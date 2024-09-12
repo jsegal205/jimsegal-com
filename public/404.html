@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Jim Segal - Oops</title>
+    <script type="text/javascript">
+      // github pages redirect hack.
+      // https://stackoverflow.com/a/78742730
+      //
+      // github pages only serves index.html so going to jimsegal.com/some-deep-link
+      // will 404 as that file doesn't exist and route isn't set because the
+      // routes are handled in tanstack-router in the app that is served from
+      // the index.html.
+
+      // Number of path segments to keep in the URL. As a custom domain, don't keep any.
+      var pathSegmentsToKeep = 0;
+
+      // Get the current location object
+      var l = window.location;
+
+      // Rebuild the URL
+      var newUrl =
+        l.protocol +
+        "//" +
+        l.hostname +
+        (l.port ? ":" + l.port : "") +
+        l.pathname
+          .split("/")
+          .slice(0, 1 + pathSegmentsToKeep)
+          .join("/") +
+        "/?/" +
+        l.pathname
+          .slice(1)
+          .split("/")
+          .slice(pathSegmentsToKeep)
+          .join("/")
+          .replace(/&/g, "~and~") +
+        (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+        l.hash;
+
+      // Check if the current URL does not already match the new URL to avoid infinite redirect loop
+      if (l.href !== newUrl) {
+        l.replace(newUrl);
+      }
+
+      // there is a script to decode this on index.html to route properly
+    </script>
+  </head>
+  <body></body>
+</html>
