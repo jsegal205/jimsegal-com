@@ -5,4 +5,5 @@ export type Projects = Array<Project>;
 
 export const projects: Projects = [
   { title: "Recipes", route: "/recipes", icon: "recipe-book" },
+  { title: "Games", route: "/games", icon: "meeple" },
 ];
