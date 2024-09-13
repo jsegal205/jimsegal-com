@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { fetchAllGames } from "@/api/games";
 import { type Game, type Games } from "@/api/games";
 import { Loading } from "@/components/loading";
+import { Search, SearchEmptyResults } from "@/components/search";
 
 export const Route = createFileRoute("/_withnav/games/")({
   component: () => <Games />,
@@ -11,27 +12,23 @@ export const Route = createFileRoute("/_withnav/games/")({
 
 const Games = () => {
   const [games, setGames] = useState<Games>([]);
-  const [search, setSearch] = useState<string>("");
   const { isError, isPending, data, error } = fetchAllGames();
 
   useEffect(() => {
     setGames(data || []);
   }, [data]);
 
-  const searchCallback = useCallback(
-    (search: string) => {
-      if (search) {
-        const filteredGames = data!.filter((game) =>
-          game.name.toLowerCase().includes(search.toLowerCase()),
-        );
+  const searchCallback = (search: string) => {
+    if (search) {
+      const filteredGames = data!.filter((game) =>
+        game.name.toLowerCase().includes(search.toLowerCase()),
+      );
 
-        setGames(filteredGames);
-      } else {
-        setGames(data!);
-      }
-    },
-    [search, data],
-  );
+      setGames(filteredGames);
+    } else {
+      setGames(data!);
+    }
+  };
 
   if (isPending) {
     return <Loading />;
@@ -45,18 +42,7 @@ const Games = () => {
     <>
       <h1>Games</h1>
       <p>My collection of {data.length} tabletop games.</p>
-      <div>
-        <label className="pr-2">Search:</label>
-        <input
-          className="border-2 border-slate-500 rounded p-1"
-          type="text"
-          value={search}
-          onChange={({ target: { value } }) => {
-            setSearch(value);
-            searchCallback(value);
-          }}
-        />
-      </div>
+      <Search onValueChange={searchCallback} />
       <ol className="flex flex-wrap justify-evenly">
         {games.map((game: Game) => (
           <li key={game.bgg_id}>
@@ -75,12 +61,7 @@ const Games = () => {
         ))}
       </ol>
 
-      {games.length === 0 ? (
-        <div className="flex flex-col text-center">
-          <h2>Whoops, no games found</h2>
-          {Boolean(search) ? <div>Try updating the search</div> : null}
-        </div>
-      ) : null}
+      {games.length === 0 ? <SearchEmptyResults model="games" /> : null}
     </>
   );
 };
