@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as WithnavImport } from './routes/_withnav'
 import { Route as IndexImport } from './routes/index'
+import { Route as WithnavShortsIndexImport } from './routes/_withnav/shorts/index'
 import { Route as WithnavRecipesIndexImport } from './routes/_withnav/recipes/index'
 import { Route as WithnavGamesIndexImport } from './routes/_withnav/games/index'
 import { Route as WithnavRecipesSlugImport } from './routes/_withnav/recipes/$slug'
@@ -27,6 +28,11 @@ const WithnavRoute = WithnavImport.update({
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const WithnavShortsIndexRoute = WithnavShortsIndexImport.update({
+  path: '/shorts/',
+  getParentRoute: () => WithnavRoute,
 } as any)
 
 const WithnavRecipesIndexRoute = WithnavRecipesIndexImport.update({
@@ -83,6 +89,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WithnavRecipesIndexImport
       parentRoute: typeof WithnavImport
     }
+    '/_withnav/shorts/': {
+      id: '/_withnav/shorts/'
+      path: '/shorts'
+      fullPath: '/shorts'
+      preLoaderRoute: typeof WithnavShortsIndexImport
+      parentRoute: typeof WithnavImport
+    }
   }
 }
 
@@ -92,12 +105,14 @@ interface WithnavRouteChildren {
   WithnavRecipesSlugRoute: typeof WithnavRecipesSlugRoute
   WithnavGamesIndexRoute: typeof WithnavGamesIndexRoute
   WithnavRecipesIndexRoute: typeof WithnavRecipesIndexRoute
+  WithnavShortsIndexRoute: typeof WithnavShortsIndexRoute
 }
 
 const WithnavRouteChildren: WithnavRouteChildren = {
   WithnavRecipesSlugRoute: WithnavRecipesSlugRoute,
   WithnavGamesIndexRoute: WithnavGamesIndexRoute,
   WithnavRecipesIndexRoute: WithnavRecipesIndexRoute,
+  WithnavShortsIndexRoute: WithnavShortsIndexRoute,
 }
 
 const WithnavRouteWithChildren =
@@ -109,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/recipes/$slug': typeof WithnavRecipesSlugRoute
   '/games': typeof WithnavGamesIndexRoute
   '/recipes': typeof WithnavRecipesIndexRoute
+  '/shorts': typeof WithnavShortsIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -117,6 +133,7 @@ export interface FileRoutesByTo {
   '/recipes/$slug': typeof WithnavRecipesSlugRoute
   '/games': typeof WithnavGamesIndexRoute
   '/recipes': typeof WithnavRecipesIndexRoute
+  '/shorts': typeof WithnavShortsIndexRoute
 }
 
 export interface FileRoutesById {
@@ -126,13 +143,14 @@ export interface FileRoutesById {
   '/_withnav/recipes/$slug': typeof WithnavRecipesSlugRoute
   '/_withnav/games/': typeof WithnavGamesIndexRoute
   '/_withnav/recipes/': typeof WithnavRecipesIndexRoute
+  '/_withnav/shorts/': typeof WithnavShortsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '' | '/recipes/$slug' | '/games' | '/recipes'
+  fullPaths: '/' | '' | '/recipes/$slug' | '/games' | '/recipes' | '/shorts'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/recipes/$slug' | '/games' | '/recipes'
+  to: '/' | '' | '/recipes/$slug' | '/games' | '/recipes' | '/shorts'
   id:
     | '__root__'
     | '/'
@@ -140,6 +158,7 @@ export interface FileRouteTypes {
     | '/_withnav/recipes/$slug'
     | '/_withnav/games/'
     | '/_withnav/recipes/'
+    | '/_withnav/shorts/'
   fileRoutesById: FileRoutesById
 }
 
@@ -177,7 +196,8 @@ export const routeTree = rootRoute
       "children": [
         "/_withnav/recipes/$slug",
         "/_withnav/games/",
-        "/_withnav/recipes/"
+        "/_withnav/recipes/",
+        "/_withnav/shorts/"
       ]
     },
     "/_withnav/recipes/$slug": {
@@ -190,6 +210,10 @@ export const routeTree = rootRoute
     },
     "/_withnav/recipes/": {
       "filePath": "_withnav/recipes/index.tsx",
+      "parent": "/_withnav"
+    },
+    "/_withnav/shorts/": {
+      "filePath": "_withnav/shorts/index.tsx",
       "parent": "/_withnav"
     }
   }
