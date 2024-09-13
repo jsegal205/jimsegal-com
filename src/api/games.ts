@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { dataURL } from "../utils";
+import { dataURL, sortBy } from "@/utils";
 
 export type Game = {
   name: string;
@@ -21,19 +21,6 @@ export const fetchAllGames = () => {
 
       return response.json();
     },
-    select: (data) => {
-      const sorted = data.sort(({ name: titleA }, { name: titleB }) => {
-        if (titleA < titleB) {
-          return -1;
-        }
-        if (titleA > titleB) {
-          return 1;
-        }
-
-        return 0;
-      });
-
-      return sorted;
-    },
+    select: (data) => sortBy(data, "name"),
   });
 };

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { dataURL } from "../utils";
+import { dataURL, sortBy } from "@/utils";
 
 export type Recipe = {
   title: string;
@@ -37,16 +37,7 @@ const allRecipes = ({ selectCB } = { selectCB: (data: Recipes) => data }) => {
       return response.json();
     },
     select: (data) => {
-      const sorted = data.sort(({ title: titleA }, { title: titleB }) => {
-        if (titleA < titleB) {
-          return -1;
-        }
-        if (titleA > titleB) {
-          return 1;
-        }
-
-        return 0;
-      });
+      const sorted = sortBy(data, "title");
 
       return selectCB(sorted);
     },
