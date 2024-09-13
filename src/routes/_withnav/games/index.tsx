@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { fetchAllGames } from "@/api/games";
@@ -18,7 +18,7 @@ const Games = () => {
     setGames(data || []);
   }, [data]);
 
-  const searchCallback = (search: string) => {
+  const searchCallback = useCallback((search: string) => {
     if (search) {
       const filteredGames = data!.filter((game) =>
         game.name.toLowerCase().includes(search.toLowerCase()),
@@ -28,7 +28,7 @@ const Games = () => {
     } else {
       setGames(data!);
     }
-  };
+  }, []);
 
   if (isPending) {
     return <Loading />;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { fetchAllRecipes } from "@/api/recipes";
@@ -18,7 +18,7 @@ const Recipes = () => {
     setRecipes(data || []);
   }, [data]);
 
-  const searchCallback = (search: string) => {
+  const searchCallback = useCallback((search: string) => {
     if (search) {
       const filteredRecipes = data!.filter((recipe: Recipe) =>
         recipe.title.toLowerCase().includes(search.toLowerCase()),
@@ -28,7 +28,7 @@ const Recipes = () => {
     } else {
       setRecipes(data!);
     }
-  };
+  }, []);
 
   if (isPending) {
     return <Loading />;
