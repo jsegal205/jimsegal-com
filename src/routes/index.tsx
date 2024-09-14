@@ -44,7 +44,7 @@ const Project = ({ title, route, icon }: Project) => {
       to={route}
       className="border-2 border-slate-500 rounded p-2 flex flex-row justify-evenly items-center underline mb-2 last:mb-0 hover:decoration-pink-500 hover:text-pink-500 hover:border-pink-500 hover:fill-pink-500"
     >
-      <Icon className="h-8 w-8" type={icon} />
+      <Icon className="h-8 w-8 mr-2" type={icon} />
       {title}
     </Link>
   );

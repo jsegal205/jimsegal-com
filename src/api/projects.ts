@@ -9,6 +9,11 @@ export const projects: Projects = sortBy(
     { title: "Recipes", route: "/recipes", icon: "recipe-book" },
     { title: "Games", route: "/games", icon: "meeple" },
     { title: "Shorts", route: "/shorts", icon: "shorts" },
+    {
+      title: "Is Chicago colder than Anchorage?",
+      route: "/iscolderthan",
+      icon: "temperature",
+    },
   ],
   "title",
 );
