@@ -15,6 +15,7 @@ import { Route as WithnavImport } from './routes/_withnav'
 import { Route as IndexImport } from './routes/index'
 import { Route as WithnavShortsIndexImport } from './routes/_withnav/shorts/index'
 import { Route as WithnavRecipesIndexImport } from './routes/_withnav/recipes/index'
+import { Route as WithnavIscolderthanIndexImport } from './routes/_withnav/iscolderthan/index'
 import { Route as WithnavGamesIndexImport } from './routes/_withnav/games/index'
 import { Route as WithnavRecipesSlugImport } from './routes/_withnav/recipes/$slug'
 
@@ -37,6 +38,11 @@ const WithnavShortsIndexRoute = WithnavShortsIndexImport.update({
 
 const WithnavRecipesIndexRoute = WithnavRecipesIndexImport.update({
   path: '/recipes/',
+  getParentRoute: () => WithnavRoute,
+} as any)
+
+const WithnavIscolderthanIndexRoute = WithnavIscolderthanIndexImport.update({
+  path: '/iscolderthan/',
   getParentRoute: () => WithnavRoute,
 } as any)
 
@@ -82,6 +88,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WithnavGamesIndexImport
       parentRoute: typeof WithnavImport
     }
+    '/_withnav/iscolderthan/': {
+      id: '/_withnav/iscolderthan/'
+      path: '/iscolderthan'
+      fullPath: '/iscolderthan'
+      preLoaderRoute: typeof WithnavIscolderthanIndexImport
+      parentRoute: typeof WithnavImport
+    }
     '/_withnav/recipes/': {
       id: '/_withnav/recipes/'
       path: '/recipes'
@@ -104,6 +117,7 @@ declare module '@tanstack/react-router' {
 interface WithnavRouteChildren {
   WithnavRecipesSlugRoute: typeof WithnavRecipesSlugRoute
   WithnavGamesIndexRoute: typeof WithnavGamesIndexRoute
+  WithnavIscolderthanIndexRoute: typeof WithnavIscolderthanIndexRoute
   WithnavRecipesIndexRoute: typeof WithnavRecipesIndexRoute
   WithnavShortsIndexRoute: typeof WithnavShortsIndexRoute
 }
@@ -111,6 +125,7 @@ interface WithnavRouteChildren {
 const WithnavRouteChildren: WithnavRouteChildren = {
   WithnavRecipesSlugRoute: WithnavRecipesSlugRoute,
   WithnavGamesIndexRoute: WithnavGamesIndexRoute,
+  WithnavIscolderthanIndexRoute: WithnavIscolderthanIndexRoute,
   WithnavRecipesIndexRoute: WithnavRecipesIndexRoute,
   WithnavShortsIndexRoute: WithnavShortsIndexRoute,
 }
@@ -123,6 +138,7 @@ export interface FileRoutesByFullPath {
   '': typeof WithnavRouteWithChildren
   '/recipes/$slug': typeof WithnavRecipesSlugRoute
   '/games': typeof WithnavGamesIndexRoute
+  '/iscolderthan': typeof WithnavIscolderthanIndexRoute
   '/recipes': typeof WithnavRecipesIndexRoute
   '/shorts': typeof WithnavShortsIndexRoute
 }
@@ -132,6 +148,7 @@ export interface FileRoutesByTo {
   '': typeof WithnavRouteWithChildren
   '/recipes/$slug': typeof WithnavRecipesSlugRoute
   '/games': typeof WithnavGamesIndexRoute
+  '/iscolderthan': typeof WithnavIscolderthanIndexRoute
   '/recipes': typeof WithnavRecipesIndexRoute
   '/shorts': typeof WithnavShortsIndexRoute
 }
@@ -142,21 +159,37 @@ export interface FileRoutesById {
   '/_withnav': typeof WithnavRouteWithChildren
   '/_withnav/recipes/$slug': typeof WithnavRecipesSlugRoute
   '/_withnav/games/': typeof WithnavGamesIndexRoute
+  '/_withnav/iscolderthan/': typeof WithnavIscolderthanIndexRoute
   '/_withnav/recipes/': typeof WithnavRecipesIndexRoute
   '/_withnav/shorts/': typeof WithnavShortsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '' | '/recipes/$slug' | '/games' | '/recipes' | '/shorts'
+  fullPaths:
+    | '/'
+    | ''
+    | '/recipes/$slug'
+    | '/games'
+    | '/iscolderthan'
+    | '/recipes'
+    | '/shorts'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/recipes/$slug' | '/games' | '/recipes' | '/shorts'
+  to:
+    | '/'
+    | ''
+    | '/recipes/$slug'
+    | '/games'
+    | '/iscolderthan'
+    | '/recipes'
+    | '/shorts'
   id:
     | '__root__'
     | '/'
     | '/_withnav'
     | '/_withnav/recipes/$slug'
     | '/_withnav/games/'
+    | '/_withnav/iscolderthan/'
     | '/_withnav/recipes/'
     | '/_withnav/shorts/'
   fileRoutesById: FileRoutesById
@@ -196,6 +229,7 @@ export const routeTree = rootRoute
       "children": [
         "/_withnav/recipes/$slug",
         "/_withnav/games/",
+        "/_withnav/iscolderthan/",
         "/_withnav/recipes/",
         "/_withnav/shorts/"
       ]
@@ -206,6 +240,10 @@ export const routeTree = rootRoute
     },
     "/_withnav/games/": {
       "filePath": "_withnav/games/index.tsx",
+      "parent": "/_withnav"
+    },
+    "/_withnav/iscolderthan/": {
+      "filePath": "_withnav/iscolderthan/index.tsx",
       "parent": "/_withnav"
     },
     "/_withnav/recipes/": {
