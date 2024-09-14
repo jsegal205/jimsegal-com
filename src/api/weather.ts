@@ -1,9 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 
 type MaxDailyTemp = { city: string; maxTemp: number | undefined };
-type APIWeatherResponse = {
+type APIMaxDailyTempResponse = {
   city: { name: string };
   list: Array<{ temp: { max: number } }>;
+};
+
+type CurrentTemp = { city: string; currentTemp: number | undefined };
+type APICurrentTempResponse = {
+  name: string;
+  main: { temp: number | undefined };
 };
 
 export const knownCoordinates = {
@@ -13,8 +19,8 @@ export const knownCoordinates = {
 
 export const fetchDailyMaxTemp = (lat: number, long: number) => {
   return useQuery({
-    queryKey: ["weather", lat, long],
-    queryFn: async (): Promise<APIWeatherResponse> => {
+    queryKey: ["daily-max-temp", lat, long],
+    queryFn: async (): Promise<APIMaxDailyTempResponse> => {
       const url = `https://api.openweathermap.org/data/2.5/forecast/daily?appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}&units=imperial&cnt=1`;
       const response = await fetch(`${url}&lat=${lat}&lon=${long}`);
 
@@ -28,6 +34,28 @@ export const fetchDailyMaxTemp = (lat: number, long: number) => {
       return {
         city: data.city.name,
         maxTemp: data?.list[0]?.temp?.max || undefined,
+      };
+    },
+  });
+};
+
+export const fetchCurrentTemp = (lat: number, long: number) => {
+  return useQuery({
+    queryKey: ["current-temp", lat, long],
+    queryFn: async (): Promise<APICurrentTempResponse> => {
+      const url = `https://api.openweathermap.org/data/2.5/weather?appid=${import.meta.env.VITE_OPEN_WEATHER_API_KEY}&units=imperial`;
+      const response = await fetch(`${url}&lat=${lat}&lon=${long}`);
+
+      if (!response.ok) {
+        throw new Error("Error fetching current temperature");
+      }
+
+      return response.json();
+    },
+    select: (data): CurrentTemp => {
+      return {
+        city: data.name,
+        currentTemp: data.main.temp,
       };
     },
   });
