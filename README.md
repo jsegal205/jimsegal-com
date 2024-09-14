@@ -1,6 +1,6 @@
 # jimsegal.com
 
-Yet another attempt at a new portfolio site rewrite.
+Yet another attempt at a portfolio site rewrite.
 
 Check out the previous attempts
 
