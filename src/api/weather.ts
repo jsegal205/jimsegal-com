@@ -19,7 +19,7 @@ export const fetchDailyMaxTemp = (lat: number, long: number) => {
       const response = await fetch(`${url}&lat=${lat}&lon=${long}`);
 
       if (!response.ok) {
-        throw new Error("Error fetching games");
+        throw new Error("Error fetching daily max temperature");
       }
 
       return response.json();
