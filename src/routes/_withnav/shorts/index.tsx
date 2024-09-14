@@ -34,7 +34,7 @@ const Shorts = () => {
   }, [data]);
 
   if (isPending) {
-    return <Loading />;
+    return <Loading icon="shorts" />;
   }
 
   if (isError) {
