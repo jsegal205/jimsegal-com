@@ -21,6 +21,11 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+# as this is served via github pages, add the following to the environment variables section of the repo:
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables
+env:
+  VITE_OPEN_WEATHER_API_KEY: ${{ env.VITE_OPEN_WEATHER_API_KEY }}
+
 jobs:
   # Single deploy job since we're just deploying
   deploy:
