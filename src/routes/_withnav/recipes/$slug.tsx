@@ -4,6 +4,7 @@ import Markdown from "react-markdown";
 import { fetchRecipeBySlug } from "@/api/recipes";
 import { Loading } from "@/components/loading";
 import { Icon } from "@/icons";
+import { NotFound } from "@/components/notFound";
 
 export const Route = createFileRoute("/_withnav/recipes/$slug")({
   component: () => <Recipe />,
@@ -22,7 +23,7 @@ const Recipe = () => {
   }
 
   if (data.length === 0) {
-    return <div>Not found</div>;
+    return <NotFound />;
   }
 
   const { title, referenceLink, ingredients, directions, notes } = data[0];

@@ -5,6 +5,9 @@ import * as Sentry from "@sentry/react";
 
 import { routeTree } from "@/routeTree.gen";
 
+import { NotFound } from "@/components/notFound";
+import { HeaderNav } from "@/components/headerNav";
+
 import "@/index.css";
 
 if (import.meta.env.PROD) {
@@ -22,7 +25,18 @@ if (import.meta.env.PROD) {
   });
 }
 
-const router = createRouter({ routeTree });
+const router = createRouter({
+  defaultNotFoundComponent: () => (
+    <section className="m-4">
+      <HeaderNav />
+
+      <section className="p-4">
+        <NotFound />
+      </section>
+    </section>
+  ),
+  routeTree,
+});
 
 declare module "@tanstack/react-router" {
   interface Register {
