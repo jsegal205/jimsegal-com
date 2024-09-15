@@ -1,10 +1,26 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
+import * as Sentry from "@sentry/react";
 
 import { routeTree } from "@/routeTree.gen";
 
 import "@/index.css";
+
+if (import.meta.env.PROD) {
+  Sentry.init({
+    dsn: "https://c63c4a4bf9af9744352abd31f42fab39@o345528.ingest.us.sentry.io/4507958443442176",
+    integrations: [
+      Sentry.browserTracingIntegration(),
+      Sentry.replayIntegration(),
+    ],
+    // Tracing
+    tracesSampleRate: 1.0,
+    // Session Replay
+    replaysSessionSampleRate: 0.1,
+    replaysOnErrorSampleRate: 1.0,
+  });
+}
 
 const router = createRouter({ routeTree });
 
