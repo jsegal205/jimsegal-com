@@ -12,6 +12,7 @@ export const Route = createFileRoute("/_withnav/games/")({
 
 const Games = () => {
   const [games, setGames] = useState<Games>([]);
+  const [isFiltered, setIsFiltered] = useState<boolean>(false);
   const { isError, isPending, data, error } = fetchAllGames();
 
   useEffect(() => {
@@ -39,8 +40,14 @@ const Games = () => {
         Math.random() * Math.floor(data?.length - 1),
       );
 
+      setIsFiltered(true);
       setGames([data[randomGame]]);
     }
+  };
+
+  const resetCallback = () => {
+    setIsFiltered(false);
+    setGames(data || []);
   };
 
   if (isPending) {
@@ -55,10 +62,14 @@ const Games = () => {
     <>
       <h1>Games</h1>
       <p>My collection of {data.length} tabletop games.</p>
-      <div className="flex justify-between">
-        <Search onValueChange={searchCallback} />
+      <div className="flex justify-between items-center">
+        <Search
+          onValueChange={searchCallback}
+          onResetClick={resetCallback}
+          showReset={isFiltered}
+        />
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={randomGameCallback}
         >
           Pick a random game

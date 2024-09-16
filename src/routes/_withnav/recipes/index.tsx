@@ -33,6 +33,10 @@ const Recipes = () => {
     [data],
   );
 
+  const resetCallback = () => {
+    setRecipes(data || []);
+  };
+
   if (isPending) {
     return <Loading />;
   }
@@ -44,7 +48,7 @@ const Recipes = () => {
   return (
     <>
       <h1>Recipes</h1>
-      <Search onValueChange={searchCallback} />
+      <Search onValueChange={searchCallback} onResetClick={resetCallback} />
       <ol className="flex flex-col">
         {recipes.map((recipe: Recipe) => (
           <li key={recipe.slug}>
