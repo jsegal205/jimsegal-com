@@ -18,17 +18,20 @@ const Recipes = () => {
     setRecipes(data || []);
   }, [data]);
 
-  const searchCallback = useCallback((search: string) => {
-    if (search) {
-      const filteredRecipes = data!.filter((recipe: Recipe) =>
-        recipe.title.toLowerCase().includes(search.toLowerCase()),
-      );
+  const searchCallback = useCallback(
+    (search: string) => {
+      if (search) {
+        const filteredRecipes = data!.filter((recipe: Recipe) =>
+          recipe.title.toLowerCase().includes(search.toLowerCase()),
+        );
 
-      setRecipes(filteredRecipes);
-    } else {
-      setRecipes(data!);
-    }
-  }, []);
+        setRecipes(filteredRecipes);
+      } else {
+        setRecipes(data!);
+      }
+    },
+    [data],
+  );
 
   if (isPending) {
     return <Loading />;

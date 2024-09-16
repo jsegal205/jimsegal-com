@@ -18,17 +18,20 @@ const Games = () => {
     setGames(data || []);
   }, [data]);
 
-  const searchCallback = useCallback((search: string) => {
-    if (search) {
-      const filteredGames = data!.filter((game) =>
-        game.name.toLowerCase().includes(search.toLowerCase()),
-      );
+  const searchCallback = useCallback(
+    (search: string) => {
+      if (search) {
+        const filteredGames = data!.filter((game) =>
+          game.name.toLowerCase().includes(search.toLowerCase()),
+        );
 
-      setGames(filteredGames);
-    } else {
-      setGames(data!);
-    }
-  }, []);
+        setGames(filteredGames);
+      } else {
+        setGames(data!);
+      }
+    },
+    [data],
+  );
 
   if (isPending) {
     return <Loading />;
