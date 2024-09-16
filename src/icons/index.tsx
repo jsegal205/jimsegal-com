@@ -1,4 +1,5 @@
 import { Github } from "./github";
+import { BaseballHat, CowboyHat } from "./hats";
 import { Heart } from "./heart";
 import { Meeple } from "./meeple";
 import { OpenExternal } from "./open-external";
@@ -7,6 +8,8 @@ import { Shorts } from "./shorts";
 import { Temperature } from "./temperature";
 
 export type IconTypes =
+  | "baseball-hat"
+  | "cowboy-hat"
   | "github"
   | "heart"
   | "meeple"
@@ -20,6 +23,8 @@ type Icon = {
 };
 
 const typeToSVG = {
+  "baseball-hat": BaseballHat(),
+  "cowboy-hat": CowboyHat(),
   github: Github(),
   heart: Heart(),
   meeple: Meeple(),

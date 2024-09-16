@@ -1,7 +1,13 @@
 import { Icon } from "@/icons";
 import { type IconTypes } from "@/icons";
 
-export const Loading = ({ icon }: { icon?: IconTypes }) => (
+export const Loading = ({
+  icon,
+  label,
+}: {
+  icon?: IconTypes;
+  label?: string;
+}) => (
   <div className="flex items-center">
     {Boolean(icon) ? (
       <Icon type={icon!} className="animate-spin mr-3 h-5 w-5 align-center" />
@@ -27,6 +33,6 @@ export const Loading = ({ icon }: { icon?: IconTypes }) => (
         ></path>
       </svg>
     )}
-    <label className="text-lg after:animate-dots">Loading</label>
+    <label className="text-lg after:animate-dots">{label || "Loading"}</label>
   </div>
 );
