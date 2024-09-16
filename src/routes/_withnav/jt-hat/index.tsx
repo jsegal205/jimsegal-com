@@ -19,11 +19,11 @@ const IsJTWearingAHat = () => {
     setTimeout(() => {
       setCheckBaseball(false);
       setCheckCowboy(true);
-    }, 3000);
+    }, 2000);
     setTimeout(() => {
       setCheckCowboy(false);
       setIsHatWorn(true);
-    }, 6000);
+    }, 4000);
   };
 
   return (
@@ -41,17 +41,15 @@ const IsJTWearingAHat = () => {
         Check
       </button>
 
-      {checkBaseball && (
-        <div className="flex justify-center">
+      <div className="flex justify-center">
+        {checkBaseball && (
           <Loading icon="baseball-hat" label="Checking for baseball hats" />
-        </div>
-      )}
-      {checkCowboy && (
-        <div className="flex justify-center">
+        )}
+        {checkCowboy && (
           <Loading icon="cowboy-hat" label="Checking for cowboy hats" />
-        </div>
-      )}
-      {isHatWorn && <h2 className="text-6xl">Very Likely</h2>}
+        )}
+        {isHatWorn && <h2 className="text-6xl">Very Likely</h2>}
+      </div>
     </div>
   );
 };
