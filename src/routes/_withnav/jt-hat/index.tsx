@@ -7,11 +7,13 @@ export const Route = createFileRoute("/_withnav/jt-hat/")({
 });
 
 const IsJTWearingAHat = () => {
-  const [isHatWorn, setIsHatWorn] = useState(false);
   const [checkBaseball, setCheckBaseball] = useState(false);
   const [checkCowboy, setCheckCowboy] = useState(false);
+  const [isHatWorn, setIsHatWorn] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const handleButtonClick = () => {
+    setIsButtonDisabled(true);
     setIsHatWorn(false);
     setCheckCowboy(false);
     setCheckBaseball(true);
@@ -20,9 +22,11 @@ const IsJTWearingAHat = () => {
       setCheckBaseball(false);
       setCheckCowboy(true);
     }, 2000);
+
     setTimeout(() => {
       setCheckCowboy(false);
       setIsHatWorn(true);
+      setIsButtonDisabled(false);
     }, 4000);
   };
 
@@ -35,8 +39,9 @@ const IsJTWearingAHat = () => {
       </p>
 
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-8"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-8 disabled:bg-slate-500"
         onClick={handleButtonClick}
+        disabled={isButtonDisabled}
       >
         Check
       </button>
