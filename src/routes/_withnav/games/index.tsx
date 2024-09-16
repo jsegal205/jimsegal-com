@@ -20,7 +20,7 @@ const Games = () => {
 
   const searchCallback = useCallback(
     (search: string) => {
-      if (search && (data?.length || 0) > 0) {
+      if (search) {
         const filteredGames = data!.filter((game) =>
           game.name.toLowerCase().includes(search.toLowerCase()),
         );

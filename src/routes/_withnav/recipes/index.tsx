@@ -20,7 +20,7 @@ const Recipes = () => {
 
   const searchCallback = useCallback(
     (search: string) => {
-      if (search && (data?.length || 0) > 0) {
+      if (search) {
         const filteredRecipes = data!.filter((recipe: Recipe) =>
           recipe.title.toLowerCase().includes(search.toLowerCase()),
         );
