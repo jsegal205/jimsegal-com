@@ -12,8 +12,18 @@ const IsJTWearingAHat = () => {
   const [checkCowboy, setCheckCowboy] = useState(false);
 
   const handleButtonClick = () => {
+    setIsHatWorn(false);
+    setCheckCowboy(false);
     setCheckBaseball(true);
-    // setIsHatWorn(true);
+
+    setTimeout(() => {
+      setCheckBaseball(false);
+      setCheckCowboy(true);
+    }, 3000);
+    setTimeout(() => {
+      setCheckCowboy(false);
+      setIsHatWorn(true);
+    }, 6000);
   };
 
   return (
@@ -25,18 +35,23 @@ const IsJTWearingAHat = () => {
       </p>
 
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-8"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-8"
         onClick={handleButtonClick}
       >
         Check
       </button>
 
-      {isHatWorn && <h2 className="text-6xl">Very Likely</h2>}
       {checkBaseball && (
-        <div className="justify-center text-2xl">
-          <Loading icon="baseball-hat" />
+        <div className="flex justify-center">
+          <Loading icon="baseball-hat" label="Checking for baseball hats" />
         </div>
       )}
+      {checkCowboy && (
+        <div className="flex justify-center">
+          <Loading icon="cowboy-hat" label="Checking for cowboy hats" />
+        </div>
+      )}
+      {isHatWorn && <h2 className="text-6xl">Very Likely</h2>}
     </div>
   );
 };
