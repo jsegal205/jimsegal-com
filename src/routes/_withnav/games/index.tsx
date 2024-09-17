@@ -12,6 +12,7 @@ export const Route = createFileRoute("/_withnav/games/")({
 
 const Games = () => {
   const [games, setGames] = useState<Games>([]);
+  const [isFiltered, setIsFiltered] = useState<boolean>(false);
   const { isError, isPending, data, error } = fetchAllGames();
 
   useEffect(() => {
@@ -33,6 +34,22 @@ const Games = () => {
     [data],
   );
 
+  const randomGameCallback = () => {
+    if (data?.length) {
+      const randomGame = Math.floor(
+        Math.random() * Math.floor(data?.length - 1),
+      );
+
+      setIsFiltered(true);
+      setGames([data[randomGame]]);
+    }
+  };
+
+  const resetCallback = () => {
+    setIsFiltered(false);
+    setGames(data || []);
+  };
+
   if (isPending) {
     return <Loading />;
   }
@@ -45,7 +62,19 @@ const Games = () => {
     <>
       <h1>Games</h1>
       <p>My collection of {data.length} tabletop games.</p>
-      <Search onValueChange={searchCallback} />
+      <div className="flex justify-between items-center">
+        <Search
+          onValueChange={searchCallback}
+          onResetClick={resetCallback}
+          showReset={isFiltered}
+        />
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={randomGameCallback}
+        >
+          Pick a random game
+        </button>
+      </div>
       <ol className="flex flex-wrap justify-evenly">
         {games.map((game: Game) => (
           <li key={game.bgg_id}>
