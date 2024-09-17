@@ -2,9 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import Markdown from "react-markdown";
 
 import { fetchRecipeBySlug } from "@/api/recipes";
+import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
-import { Icon } from "@/icons";
 import { NotFound } from "@/components/notFound";
+import { Icon } from "@/icons";
 
 export const Route = createFileRoute("/_withnav/recipes/$slug")({
   component: () => <Recipe />,
@@ -19,7 +20,7 @@ const Recipe = () => {
   }
 
   if (isError) {
-    return <div>Error: {error.message}</div>;
+    return <Error message={error.message} />;
   }
 
   if (data.length === 0) {

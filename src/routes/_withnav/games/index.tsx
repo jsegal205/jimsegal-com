@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { fetchAllGames } from "@/api/games";
 import { type Game, type Games } from "@/api/games";
+import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
 import { Search, SearchEmptyResults } from "@/components/search";
 
@@ -55,7 +56,7 @@ const Games = () => {
   }
 
   if (isError) {
-    return <div>Error: {error.message}</div>;
+    return <Error message={error.message} />;
   }
 
   return (
