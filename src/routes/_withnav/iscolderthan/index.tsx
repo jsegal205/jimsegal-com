@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { fetchCurrentTemp, knownCoordinates } from "@/api/weather";
+import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
-import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/_withnav/iscolderthan/")({
   component: () => <IsColderThan />,
@@ -49,10 +50,10 @@ const IsColderThan = () => {
   }
 
   if (chiIsError) {
-    return <div>Error: {chiError.message}</div>;
+    return <Error message={chiError.message} />;
   }
   if (akIsError) {
-    return <div>Error: {akError.message}</div>;
+    return <Error message={akError.message} />;
   }
 
   return (

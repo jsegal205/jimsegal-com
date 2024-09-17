@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { fetchAllRecipes } from "@/api/recipes";
 import { type Recipe, type Recipes } from "@/api/recipes";
+import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
 import { Search, SearchEmptyResults } from "@/components/search";
 
@@ -42,7 +43,7 @@ const Recipes = () => {
   }
 
   if (isError) {
-    return <div>Error: {error.message}</div>;
+    return <Error message={error.message} />;
   }
 
   return (

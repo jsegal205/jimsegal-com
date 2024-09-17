@@ -4,6 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { calculateShortsWearingProbability } from "@/api/shorts";
 import { type Criteria } from "@/api/shorts";
 import { fetchDailyMaxTemp, knownCoordinates } from "@/api/weather";
+import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
 
 export const Route = createFileRoute("/_withnav/shorts/")({
@@ -38,7 +39,7 @@ const Shorts = () => {
   }
 
   if (isError) {
-    return <div>Error: {error.message}</div>;
+    return <Error message={error.message} />;
   }
 
   return (
