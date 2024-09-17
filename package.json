@@ -3,13 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@9.10.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "prettier": "pnpm exec prettier . --write",
-    "ci": "pnpm install --frozen-lockfile"
+    "ci": "pnpm install --frozen-lockfile",
+    "check-prettier": "pnpm exec prettier . --check"
   },
   "dependencies": {
     "@sentry/react": "^8.30.0",

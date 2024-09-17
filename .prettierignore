@@ -1,3 +1,7 @@
 # Ignore artifacts:
 build
 coverage
+
+# ignore generated files
+pnpm-lock.yaml
+src/routeTree.gen.ts
