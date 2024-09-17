@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-type MaxDailyTemp = { city: string; maxTemp: number };
+type MaxDailyTemp = { city: string; maxTemp: number | undefined };
 type APIMaxDailyTempResponse = {
   city: { name: string };
   list: Array<{ temp: { max: number } }>;
