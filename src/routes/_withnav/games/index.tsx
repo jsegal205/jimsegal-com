@@ -6,6 +6,7 @@ import { type Game, type Games } from "@/api/games";
 import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
 import { Search, SearchEmptyResults } from "@/components/search";
+import { Button } from "@/components/button";
 
 export const Route = createFileRoute("/_withnav/games/")({
   component: () => <Games />,
@@ -63,18 +64,13 @@ const Games = () => {
     <>
       <h1>Games</h1>
       <p>My collection of {data.length} tabletop games.</p>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-baseline">
         <Search
           onValueChange={searchCallback}
           onResetClick={resetCallback}
           showReset={isFiltered}
         />
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={randomGameCallback}
-        >
-          Pick a random game
-        </button>
+        <Button onClick={randomGameCallback}>Pick a random game</Button>
       </div>
       <ol className="flex flex-wrap justify-evenly">
         {games.map((game: Game) => (

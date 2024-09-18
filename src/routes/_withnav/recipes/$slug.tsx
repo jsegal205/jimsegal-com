@@ -6,6 +6,7 @@ import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
 import { NotFound } from "@/components/notFound";
 import { Icon } from "@/icons";
+import { Button } from "@/components/button";
 
 export const Route = createFileRoute("/_withnav/recipes/$slug")({
   component: () => <Recipe />,
@@ -45,14 +46,14 @@ const Recipe = () => {
       ) : null}
       <div className="flex flex-col justify-between sm:flex-row">
         <h2>Ingredients</h2>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        <Button
+          className="self-start"
           onClick={() => {
             navigator.clipboard.writeText(ingredients.replace(/-\s/gm, ""));
           }}
         >
           Copy Ingredients
-        </button>
+        </Button>
       </div>
       <CustomMarkdown>{ingredients}</CustomMarkdown>
       <h2>Directions</h2>
