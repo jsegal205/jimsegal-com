@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Loading } from "@/components/loading";
+import { Button } from "@/components/button";
 
 export const Route = createFileRoute("/_withnav/jt-hat/")({
   component: () => <IsJTWearingAHat />,
@@ -38,13 +39,13 @@ const IsJTWearingAHat = () => {
         wearing a hat?
       </p>
 
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-8 disabled:bg-slate-500"
+      <Button
+        className="self-center mt-2"
         onClick={handleButtonClick}
         disabled={isButtonDisabled}
       >
         Check
-      </button>
+      </Button>
 
       <div className="flex justify-center">
         {checkBaseball && (

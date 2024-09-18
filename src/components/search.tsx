@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { Button } from "@/components/button";
+
 export const Search = ({
   onValueChange,
   onResetClick,
@@ -12,7 +14,7 @@ export const Search = ({
   const [search, setSearch] = useState<string>("");
 
   return (
-    <div className="flex items-center flex-row my-2">
+    <div className="flex items-baseline flex-row my-2">
       <label className="pr-2">Search:</label>
       <input
         className="border-2 border-slate-500 rounded px-3 py-1.5"
@@ -24,15 +26,15 @@ export const Search = ({
         }}
       />
       {(Boolean(search) || showReset) && (
-        <button
+        <Button
+          className="ml-2"
           onClick={() => {
             setSearch("");
             onResetClick();
           }}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded ml-2"
         >
           Reset
-        </button>
+        </Button>
       )}
     </div>
   );

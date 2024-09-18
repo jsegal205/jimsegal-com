@@ -4,6 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { fetchCurrentTemp, knownCoordinates } from "@/api/weather";
 import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
+import { Button } from "@/components/button";
 
 export const Route = createFileRoute("/_withnav/iscolderthan/")({
   component: () => <IsColderThan />,
@@ -120,12 +121,10 @@ const IsColderThan = () => {
       {"geolocation" in navigator ? (
         <div className="flex flex-col mt-4">
           <h3 className="mb-2">Is your location colder than Anchorage?</h3>
-          <button
-            className="self-start bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2"
-            onClick={checkBrowserLocation}
-          >
+
+          <Button className="self-center" onClick={checkBrowserLocation}>
             Let's find out
-          </button>
+          </Button>
 
           {Boolean(browserLocationBlocked) ? (
             <Error
@@ -167,7 +166,7 @@ const LocationCurrentTemp = ({
   city: string;
   currentTemp: number | undefined;
 }) => (
-  <label>
+  <label className="block">
     Current temperature in {city}: {currentTemp} °F
   </label>
 );
