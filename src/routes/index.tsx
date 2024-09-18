@@ -1,6 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { projects } from "@/api/projects";
 import { type Project } from "@/api/projects";
+import { Link } from "@/components/link";
 import { Icon } from "@/icons";
 
 export const Route = createFileRoute("/")({
@@ -42,7 +43,7 @@ const Project = ({ title, route, icon }: Project) => {
   return (
     <Link
       to={route}
-      className="border-2 border-slate-500 rounded p-2 flex flex-row justify-evenly items-center underline mb-2 last:mb-0 hover:decoration-pink-500 hover:text-pink-500 hover:border-pink-500 hover:fill-pink-500"
+      className="border-2 border-slate-500 rounded p-2 flex flex-row justify-evenly items-center underline mb-2 last:mb-0 hover:border-pink-500"
     >
       <Icon className="h-8 w-8 mr-2" type={icon} />
       {title}
