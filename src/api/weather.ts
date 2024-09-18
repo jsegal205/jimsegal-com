@@ -39,7 +39,7 @@ export const fetchDailyMaxTemp = (lat: number, long: number) => {
   });
 };
 
-export const fetchCurrentTemp = (lat: number, long: number) => {
+export const fetchCurrentTemp = (lat: number, long: number, opts = {}) => {
   return useQuery({
     queryKey: ["current-temp", lat, long],
     queryFn: async (): Promise<APICurrentTempResponse> => {
@@ -58,5 +58,6 @@ export const fetchCurrentTemp = (lat: number, long: number) => {
         currentTemp: data.main.temp,
       };
     },
+    ...opts,
   });
 };
