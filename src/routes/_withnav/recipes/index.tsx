@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 
 import { fetchAllRecipes } from "@/api/recipes";
 import { type Recipe, type Recipes } from "@/api/recipes";
 import { Error } from "@/components/error";
+import { Link } from "@/components/link";
 import { Loading } from "@/components/loading";
 import { Search, SearchEmptyResults } from "@/components/search";
 
@@ -53,11 +54,7 @@ const Recipes = () => {
       <ol className="flex flex-col">
         {recipes.map((recipe: Recipe) => (
           <li key={recipe.slug}>
-            <Link
-              className="underline hover:decoration-pink-500 hover:text-pink-500"
-              to="/recipes/$slug"
-              params={{ slug: recipe.slug }}
-            >
+            <Link to="/recipes/$slug" params={{ slug: recipe.slug }}>
               {recipe.title}
             </Link>
           </li>

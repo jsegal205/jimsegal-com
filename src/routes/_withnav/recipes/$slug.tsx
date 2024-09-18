@@ -1,8 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import Markdown from "react-markdown";
 
 import { fetchRecipeBySlug } from "@/api/recipes";
 import { Error } from "@/components/error";
+import { Link } from "@/components/link";
 import { Loading } from "@/components/loading";
 import { NotFound } from "@/components/notFound";
 import { Icon } from "@/icons";
@@ -34,10 +35,7 @@ const Recipe = () => {
     <>
       <h1>{title}</h1>
       {referenceLink ? (
-        <Link
-          className="underline hover:decoration-pink-500 hover:text-pink-500 hover:fill-pink-500"
-          to={referenceLink}
-        >
+        <Link to={referenceLink}>
           <div className="flex">
             {referenceLink}
             <Icon className="ml-1 h-6 w-6" type="open-external" />
