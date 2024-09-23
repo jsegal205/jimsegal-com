@@ -119,7 +119,7 @@ export const Snake = () => {
       {gameOver ? (
         <div className="text-center">
           <h2 className="text-red-700">Game Over</h2>
-          <h3 className="text-green-700">Score: {score}</h3>
+          <h3 className="text-green-800">Score: {score}</h3>
         </div>
       ) : null}
 
@@ -145,12 +145,15 @@ export const Snake = () => {
             const isSnake = snake.some(
               (segment) => segment.x === col && segment.y === row,
             );
+            const isHead = snake[0].x === col && snake[0].y === row;
             const isFood = food.x === col && food.y === row;
 
             const color = isFood
               ? "bg-red-500"
               : isSnake
-                ? "bg-slate-800"
+                ? isHead
+                  ? "bg-green-800"
+                  : "bg-green-600"
                 : "bg-white";
 
             return (
