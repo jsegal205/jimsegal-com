@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Button } from "@/components/button";
 
 const BOARD_SIZE = 20; // 20x20 grid
 
@@ -11,6 +12,7 @@ export const Snake = () => {
   });
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
+  const [speed, setSpeed] = useState(0);
 
   // Handle snake movement
   useEffect(() => {
@@ -25,13 +27,14 @@ export const Snake = () => {
 
       // Check collision with walls or self
       if (
-        newHead.x < 0 ||
-        newHead.x >= BOARD_SIZE ||
-        newHead.y < 0 ||
-        newHead.y >= BOARD_SIZE ||
-        snake.some(
-          (segment) => segment.x === newHead.x && segment.y === newHead.y,
-        )
+        speed !== 0 &&
+        (newHead.x < 0 ||
+          newHead.x >= BOARD_SIZE ||
+          newHead.y < 0 ||
+          newHead.y >= BOARD_SIZE ||
+          snake.some(
+            (segment) => segment.x === newHead.x && segment.y === newHead.y,
+          ))
       ) {
         setGameOver(true);
         return;
@@ -53,10 +56,10 @@ export const Snake = () => {
       setSnake(newSnake);
     };
 
-    const intervalId = setInterval(moveSnake, 200);
+    const intervalId = speed !== 0 ? setInterval(moveSnake, speed) : -1;
 
     return () => clearInterval(intervalId); // Clean up the interval on unmount
-  }, [snake, direction, food, gameOver]);
+  }, [snake, direction, food, gameOver, speed]);
 
   // Handle keyboard input for direction
   useEffect(() => {
@@ -91,12 +94,52 @@ export const Snake = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [direction]);
 
+  const setSpeedAndStart = (speed: "low" | "mid" | "high") => {
+    console.log("speed", speed);
+    switch (speed) {
+      case "low":
+        setSpeed(400);
+        break;
+      case "mid":
+        setSpeed(200);
+        break;
+      case "high":
+        setSpeed(100);
+        break;
+      default:
+        break;
+    }
+
+    setDirection({ x: 0, y: -1 });
+  };
+
   return (
     <div>
       <h1 className="text-center">Snake Game</h1>
-      <label>Use Arrow keys to steer the Snake.</label>
+
+      {gameOver ? (
+        <div className="text-center">
+          <h2 className="text-red-700">Game Over</h2>
+          <h3 className="text-green-700">Score: {score}</h3>
+        </div>
+      ) : null}
+
+      {speed === 0 || gameOver ? (
+        <>
+          <h3 className="text-center">
+            {gameOver ? <label className="block">Play again?</label> : null}
+            Choose your difficulty
+          </h3>
+          <div className="flex justify-between">
+            <Button onClick={() => setSpeedAndStart("low")}>Easy</Button>
+            <Button onClick={() => setSpeedAndStart("mid")}>Normal</Button>
+            <Button onClick={() => setSpeedAndStart("high")}>Hard</Button>
+          </div>
+        </>
+      ) : null}
+
       <div
-        className={`grid grid-rows-[repeat(20,20px)] grid-cols-[repeat(20,20px)] border-slate-500 border-4`}
+        className={`grid grid-rows-[repeat(20,20px)] grid-cols-[repeat(20,20px)] border-slate-500 border-4${gameOver ? " opacity-70" : ""}`}
       >
         {Array.from({ length: BOARD_SIZE }).map((_, row) =>
           Array.from({ length: BOARD_SIZE }).map((_, col) => {
@@ -120,8 +163,13 @@ export const Snake = () => {
           }),
         )}
       </div>
-      <label>Score: {score}</label>
-      {gameOver && <h2>Game Over</h2>}
+
+      {gameOver ? null : (
+        <div className="flex justify-between">
+          <label>Score: {score}</label>
+          <label>Use Arrow keys to steer the Snake.</label>
+        </div>
+      )}
     </div>
   );
 };
