@@ -95,7 +95,6 @@ export const Snake = () => {
   }, [direction]);
 
   const setSpeedAndStart = (speed: "low" | "mid" | "high") => {
-    console.log("speed", speed);
     switch (speed) {
       case "low":
         setSpeed(400);
