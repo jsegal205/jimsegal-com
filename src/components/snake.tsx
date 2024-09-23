@@ -13,6 +13,12 @@ export const Snake = () => {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [speed, setSpeed] = useState(0);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    if (!window.matchMedia) return;
+    setIsTouchDevice(window.matchMedia("(pointer:coarse)").matches);
+  }, []);
 
   // Handle snake movement
   useEffect(() => {
@@ -129,28 +135,42 @@ export const Snake = () => {
     <div>
       <h1 className="text-center mb-4">Snake Game</h1>
       <div className="relative">
-        {speed === 0 || gameOver ? (
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center">
-            {gameOver ? (
-              <>
-                <h2 className="text-red-700 text-4xl">Game Over</h2>
-                <h3 className="text-green-800">Score: {score}</h3>
-              </>
-            ) : null}
-            <h3 className="text-center">
-              {gameOver ? <label className="block">Play again?</label> : null}
-              Choose your difficulty
-            </h3>
-            <div className="flex mt-2">
-              <Button onClick={() => setSpeedAndStart("low")}>Easy</Button>
-              <Button className="mx-2" onClick={() => setSpeedAndStart("mid")}>
-                Normal
-              </Button>
-              <Button onClick={() => setSpeedAndStart("high")}>Hard</Button>
-            </div>
+        {!isTouchDevice ? (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center h-20 w-64 flex border-4 border-slate-500 rounded">
+            <label className="text-2xl bg-red-500 ">
+              I'm sorry, this isn't supported on mobile
+            </label>
           </div>
-        ) : null}
-
+        ) : (
+          <>
+            {speed === 0 || gameOver ? (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center">
+                {gameOver ? (
+                  <>
+                    <h2 className="text-red-700 text-4xl">Game Over</h2>
+                    <h3 className="text-green-800">Score: {score}</h3>
+                  </>
+                ) : null}
+                <h3 className="text-center">
+                  {gameOver ? (
+                    <label className="block">Play again?</label>
+                  ) : null}
+                  Choose your difficulty
+                </h3>
+                <div className="flex mt-2">
+                  <Button onClick={() => setSpeedAndStart("low")}>Easy</Button>
+                  <Button
+                    className="mx-2"
+                    onClick={() => setSpeedAndStart("mid")}
+                  >
+                    Normal
+                  </Button>
+                  <Button onClick={() => setSpeedAndStart("high")}>Hard</Button>
+                </div>
+              </div>
+            ) : null}
+          </>
+        )}
         <div
           className={`grid grid-rows-[repeat(20,20px)] grid-cols-[repeat(20,20px)] border-slate-500 border-4${gameOver ? " opacity-70" : ""}`}
         >
