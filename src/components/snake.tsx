@@ -142,15 +142,11 @@ export const Snake = () => {
               Choose your difficulty
             </h3>
             <div className="flex mt-2">
-              <Button className="mx-2" onClick={() => setSpeedAndStart("low")}>
-                Easy
-              </Button>
+              <Button onClick={() => setSpeedAndStart("low")}>Easy</Button>
               <Button className="mx-2" onClick={() => setSpeedAndStart("mid")}>
                 Normal
               </Button>
-              <Button className="mx-2" onClick={() => setSpeedAndStart("high")}>
-                Hard
-              </Button>
+              <Button onClick={() => setSpeedAndStart("high")}>Hard</Button>
             </div>
           </div>
         ) : null}
