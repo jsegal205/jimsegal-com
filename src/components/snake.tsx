@@ -95,6 +95,15 @@ export const Snake = () => {
   }, [direction]);
 
   const setSpeedAndStart = (speed: "low" | "mid" | "high") => {
+    setGameOver(false);
+    setSpeed(0);
+    setSnake([{ x: 10, y: 10 }]);
+    setScore(0);
+    setFood({
+      x: Math.floor(Math.random() * BOARD_SIZE),
+      y: Math.floor(Math.random() * BOARD_SIZE),
+    });
+
     switch (speed) {
       case "low":
         setSpeed(400);
@@ -114,64 +123,68 @@ export const Snake = () => {
 
   return (
     <div>
-      <h1 className="text-center">Snake Game</h1>
-
-      {gameOver ? (
-        <div className="text-center">
-          <h2 className="text-red-700">Game Over</h2>
-          <h3 className="text-green-800">Score: {score}</h3>
-        </div>
-      ) : null}
-
-      {speed === 0 || gameOver ? (
-        <>
-          <h3 className="text-center">
-            {gameOver ? <label className="block">Play again?</label> : null}
-            Choose your difficulty
-          </h3>
-          <div className="flex justify-between">
-            <Button onClick={() => setSpeedAndStart("low")}>Easy</Button>
-            <Button onClick={() => setSpeedAndStart("mid")}>Normal</Button>
-            <Button onClick={() => setSpeedAndStart("high")}>Hard</Button>
+      <h1 className="text-center mb-4">Snake Game</h1>
+      <div className="relative">
+        {speed === 0 || gameOver ? (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center">
+            {gameOver ? (
+              <>
+                <h2 className="text-red-700 text-4xl">Game Over</h2>
+                <h3 className="text-green-800">Score: {score}</h3>
+              </>
+            ) : null}
+            <h3 className="text-center">
+              {gameOver ? <label className="block">Play again?</label> : null}
+              Choose your difficulty
+            </h3>
+            <div className="flex mt-2">
+              <Button className="mx-2" onClick={() => setSpeedAndStart("low")}>
+                Easy
+              </Button>
+              <Button className="mx-2" onClick={() => setSpeedAndStart("mid")}>
+                Normal
+              </Button>
+              <Button className="mx-2" onClick={() => setSpeedAndStart("high")}>
+                Hard
+              </Button>
+            </div>
           </div>
-        </>
-      ) : null}
+        ) : null}
 
-      <div
-        className={`grid grid-rows-[repeat(20,20px)] grid-cols-[repeat(20,20px)] border-slate-500 border-4${gameOver ? " opacity-70" : ""}`}
-      >
-        {Array.from({ length: BOARD_SIZE }).map((_, row) =>
-          Array.from({ length: BOARD_SIZE }).map((_, col) => {
-            const isSnake = snake.some(
-              (segment) => segment.x === col && segment.y === row,
-            );
-            const isHead = snake[0].x === col && snake[0].y === row;
-            const isFood = food.x === col && food.y === row;
+        <div
+          className={`grid grid-rows-[repeat(20,20px)] grid-cols-[repeat(20,20px)] border-slate-500 border-4${gameOver ? " opacity-70" : ""}`}
+        >
+          {Array.from({ length: BOARD_SIZE }).map((_, row) =>
+            Array.from({ length: BOARD_SIZE }).map((_, col) => {
+              const isSnake = snake.some(
+                (segment) => segment.x === col && segment.y === row,
+              );
+              const isHead = snake[0].x === col && snake[0].y === row;
+              const isFood = food.x === col && food.y === row;
 
-            const color = isFood
-              ? "bg-red-500"
-              : isSnake
-                ? isHead
-                  ? "bg-green-800"
-                  : "bg-green-600"
-                : "bg-white";
+              const color = isFood
+                ? "bg-red-500"
+                : isSnake
+                  ? isHead
+                    ? "bg-green-800"
+                    : "bg-green-600"
+                  : "bg-white";
 
-            return (
-              <div
-                key={`${col}-${row}`}
-                className={`w-5 h-5 border border-slate-200 ${color}`}
-              ></div>
-            );
-          }),
-        )}
+              return (
+                <div
+                  key={`${col}-${row}`}
+                  className={`w-5 h-5 border border-slate-200 ${color}`}
+                ></div>
+              );
+            }),
+          )}
+        </div>
       </div>
 
-      {gameOver ? null : (
-        <div className="flex justify-between">
-          <label>Score: {score}</label>
-          <label>Use Arrow keys to steer the Snake.</label>
-        </div>
-      )}
+      <div className="flex flex-row justify-between">
+        <label>Use Arrow keys to steer the Snake.</label>
+        {gameOver ? null : <label>Score: {score}</label>}
+      </div>
     </div>
   );
 };
