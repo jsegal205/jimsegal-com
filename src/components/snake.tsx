@@ -135,7 +135,7 @@ export const Snake = () => {
     <div>
       <h1 className="text-center mb-4">Snake Game</h1>
       <div className="relative">
-        {!isTouchDevice ? (
+        {isTouchDevice ? (
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center h-20 w-64 flex border-4 border-slate-500 rounded">
             <label className="text-2xl bg-red-500 ">
               I'm sorry, this isn't supported on mobile
