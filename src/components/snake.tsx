@@ -5,8 +5,12 @@ const BOARD_SIZE = 20; // 20x20 grid
 export const Snake = () => {
   const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
   const [direction, setDirection] = useState({ x: 0, y: -1 }); // Starts moving upwards
-  const [food, setFood] = useState({ x: 5, y: 5 });
+  const [food, setFood] = useState({
+    x: Math.floor(Math.random() * BOARD_SIZE),
+    y: Math.floor(Math.random() * BOARD_SIZE),
+  });
   const [gameOver, setGameOver] = useState(false);
+  const [score, setScore] = useState(0);
 
   // Handle snake movement
   useEffect(() => {
@@ -37,6 +41,7 @@ export const Snake = () => {
 
       // Check if the snake has eaten food
       if (newHead.x === food.x && newHead.y === food.y) {
+        setScore(score + 1);
         setFood({
           x: Math.floor(Math.random() * BOARD_SIZE),
           y: Math.floor(Math.random() * BOARD_SIZE),
@@ -48,7 +53,7 @@ export const Snake = () => {
       setSnake(newSnake);
     };
 
-    const intervalId = setInterval(moveSnake, 500); // Snake moves every 500ms
+    const intervalId = setInterval(moveSnake, 200);
 
     return () => clearInterval(intervalId); // Clean up the interval on unmount
   }, [snake, direction, food, gameOver]);
@@ -89,6 +94,7 @@ export const Snake = () => {
   return (
     <div>
       <h1 className="text-center">Snake Game</h1>
+      <label>Use Arrow keys to steer the Snake.</label>
       <div
         className={`grid grid-rows-[repeat(20,20px)] grid-cols-[repeat(20,20px)] border-slate-500 border-4`}
       >
@@ -114,6 +120,7 @@ export const Snake = () => {
           }),
         )}
       </div>
+      <label>Score: {score}</label>
       {gameOver && <h2>Game Over</h2>}
     </div>
   );
