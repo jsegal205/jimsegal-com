@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as WithnavImport } from './routes/_withnav'
 import { Route as IndexImport } from './routes/index'
+import { Route as WithnavSnakeIndexImport } from './routes/_withnav/snake/index'
 import { Route as WithnavShortsIndexImport } from './routes/_withnav/shorts/index'
 import { Route as WithnavRecipesIndexImport } from './routes/_withnav/recipes/index'
 import { Route as WithnavJtHatIndexImport } from './routes/_withnav/jt-hat/index'
@@ -30,6 +31,11 @@ const WithnavRoute = WithnavImport.update({
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const WithnavSnakeIndexRoute = WithnavSnakeIndexImport.update({
+  path: '/snake/',
+  getParentRoute: () => WithnavRoute,
 } as any)
 
 const WithnavShortsIndexRoute = WithnavShortsIndexImport.update({
@@ -122,6 +128,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WithnavShortsIndexImport
       parentRoute: typeof WithnavImport
     }
+    '/_withnav/snake/': {
+      id: '/_withnav/snake/'
+      path: '/snake'
+      fullPath: '/snake'
+      preLoaderRoute: typeof WithnavSnakeIndexImport
+      parentRoute: typeof WithnavImport
+    }
   }
 }
 
@@ -134,6 +147,7 @@ interface WithnavRouteChildren {
   WithnavJtHatIndexRoute: typeof WithnavJtHatIndexRoute
   WithnavRecipesIndexRoute: typeof WithnavRecipesIndexRoute
   WithnavShortsIndexRoute: typeof WithnavShortsIndexRoute
+  WithnavSnakeIndexRoute: typeof WithnavSnakeIndexRoute
 }
 
 const WithnavRouteChildren: WithnavRouteChildren = {
@@ -143,6 +157,7 @@ const WithnavRouteChildren: WithnavRouteChildren = {
   WithnavJtHatIndexRoute: WithnavJtHatIndexRoute,
   WithnavRecipesIndexRoute: WithnavRecipesIndexRoute,
   WithnavShortsIndexRoute: WithnavShortsIndexRoute,
+  WithnavSnakeIndexRoute: WithnavSnakeIndexRoute,
 }
 
 const WithnavRouteWithChildren =
@@ -157,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/jt-hat': typeof WithnavJtHatIndexRoute
   '/recipes': typeof WithnavRecipesIndexRoute
   '/shorts': typeof WithnavShortsIndexRoute
+  '/snake': typeof WithnavSnakeIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -168,6 +184,7 @@ export interface FileRoutesByTo {
   '/jt-hat': typeof WithnavJtHatIndexRoute
   '/recipes': typeof WithnavRecipesIndexRoute
   '/shorts': typeof WithnavShortsIndexRoute
+  '/snake': typeof WithnavSnakeIndexRoute
 }
 
 export interface FileRoutesById {
@@ -180,6 +197,7 @@ export interface FileRoutesById {
   '/_withnav/jt-hat/': typeof WithnavJtHatIndexRoute
   '/_withnav/recipes/': typeof WithnavRecipesIndexRoute
   '/_withnav/shorts/': typeof WithnavShortsIndexRoute
+  '/_withnav/snake/': typeof WithnavSnakeIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -193,6 +211,7 @@ export interface FileRouteTypes {
     | '/jt-hat'
     | '/recipes'
     | '/shorts'
+    | '/snake'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -203,6 +222,7 @@ export interface FileRouteTypes {
     | '/jt-hat'
     | '/recipes'
     | '/shorts'
+    | '/snake'
   id:
     | '__root__'
     | '/'
@@ -213,6 +233,7 @@ export interface FileRouteTypes {
     | '/_withnav/jt-hat/'
     | '/_withnav/recipes/'
     | '/_withnav/shorts/'
+    | '/_withnav/snake/'
   fileRoutesById: FileRoutesById
 }
 
@@ -253,7 +274,8 @@ export const routeTree = rootRoute
         "/_withnav/iscolderthan/",
         "/_withnav/jt-hat/",
         "/_withnav/recipes/",
-        "/_withnav/shorts/"
+        "/_withnav/shorts/",
+        "/_withnav/snake/"
       ]
     },
     "/_withnav/recipes/$slug": {
@@ -278,6 +300,10 @@ export const routeTree = rootRoute
     },
     "/_withnav/shorts/": {
       "filePath": "_withnav/shorts/index.tsx",
+      "parent": "/_withnav"
+    },
+    "/_withnav/snake/": {
+      "filePath": "_withnav/snake/index.tsx",
       "parent": "/_withnav"
     }
   }

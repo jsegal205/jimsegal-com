@@ -15,6 +15,7 @@ export const projects: Projects = sortBy(
       icon: "temperature",
     },
     { title: "Is JT wearing a hat?", route: "/jt-hat", icon: "cowboy-hat" },
+    { title: "Snake Game", route: "/snake", icon: "snake" },
   ],
   "title",
 );
