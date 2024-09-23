@@ -6,6 +6,7 @@ import { Meeple } from "./meeple";
 import { OpenExternal } from "./open-external";
 import { RecipeBook } from "./recipe-book";
 import { Shorts } from "./shorts";
+import { Snake } from "./snake";
 import { Temperature } from "./temperature";
 
 export type IconTypes =
@@ -18,6 +19,7 @@ export type IconTypes =
   | "open-external"
   | "recipe-book"
   | "shorts"
+  | "snake"
   | "temperature";
 type Icon = {
   className?: string;
@@ -34,6 +36,7 @@ const typeToSVG = {
   "open-external": OpenExternal(),
   "recipe-book": RecipeBook(),
   shorts: Shorts(),
+  snake: Snake(),
   temperature: Temperature(),
 };
 
