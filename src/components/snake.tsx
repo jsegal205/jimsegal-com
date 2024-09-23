@@ -66,21 +66,25 @@ export const Snake = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
         case "ArrowUp":
+        case "w":
           if (direction.y !== 1) {
             setDirection({ x: 0, y: -1 });
           }
           break;
         case "ArrowDown":
+        case "s":
           if (direction.y !== -1) {
             setDirection({ x: 0, y: 1 });
           }
           break;
         case "ArrowLeft":
+        case "a":
           if (direction.x !== 1) {
             setDirection({ x: -1, y: 0 });
           }
           break;
         case "ArrowRight":
+        case "d":
           if (direction.x !== -1) {
             setDirection({ x: 1, y: 0 });
           }
