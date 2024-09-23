@@ -4,7 +4,7 @@ const BOARD_SIZE = 20; // 20x20 grid
 
 export const Snake = () => {
   const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
-  const [direction, setDirection] = useState({ x: 0, y: -1 }); // Starts moving upwards
+  const [direction, setDirection] = useState({ x: 0, y: 0 });
   const [food, setFood] = useState({
     x: Math.floor(Math.random() * BOARD_SIZE),
     y: Math.floor(Math.random() * BOARD_SIZE),
@@ -113,7 +113,7 @@ export const Snake = () => {
 
             return (
               <div
-                key={row}
+                key={`${col}-${row}`}
                 className={`w-5 h-5 border border-slate-200 ${color}`}
               ></div>
             );
