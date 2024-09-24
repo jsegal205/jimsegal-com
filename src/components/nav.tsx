@@ -24,9 +24,9 @@ export const Nav = () => {
           type="button"
           className="space-y-1"
         >
-          <div className="w-6 h-1 bg-slate-800"></div>
-          <div className="w-6 h-1 bg-slate-800"></div>
-          <div className="w-6 h-1 bg-slate-800"></div>
+          {[...Array(3)].map((ele) => (
+            <div key={ele} className="w-6 h-1 rounded bg-slate-800"></div>
+          ))}
         </button>
         <div
           className={`${isNavOpen ? "flex flex-col border-pink-500 border-2 bg-slate-100 rounded-lg w-64 py-4 absolute top-8 right-0 z-20" : "hidden"}`}

@@ -33,6 +33,7 @@ const Recipe = () => {
 
   return (
     <>
+      <Link to="/recipes">{"<< "}All Recipes</Link>
       <h1>{title}</h1>
       {referenceLink ? (
         <Link to={referenceLink}>
@@ -42,7 +43,7 @@ const Recipe = () => {
           </div>
         </Link>
       ) : null}
-      <div className="flex flex-col justify-between sm:flex-row">
+      <div className="flex flex-col justify-between mt-4 sm:flex-row">
         <h2>Ingredients</h2>
         <Button
           className="self-start"
@@ -54,11 +55,11 @@ const Recipe = () => {
         </Button>
       </div>
       <CustomMarkdown>{ingredients}</CustomMarkdown>
-      <h2>Directions</h2>
+      <h2 className="mt-4">Directions</h2>
       <CustomMarkdown>{directions}</CustomMarkdown>
       {notes ? (
         <>
-          <h2>Notes</h2>
+          <h2 className="mt-4">Notes</h2>
           <CustomMarkdown>{notes}</CustomMarkdown>
         </>
       ) : null}

@@ -8,6 +8,11 @@ export const Route = createFileRoute("/")({
   component: () => <Home />,
 });
 
+const externalLinks: Array<{ name: string; route: string }> = [
+  { name: "Github", route: "https://github.com/jsegal205" },
+  { name: "LinkedIn", route: "https://www.linkedin.com/in/jimsegal/" },
+];
+
 const Home = () => {
   return (
     <section className="flex flex-col grow items-center  justify-evenly md:flex-row">
@@ -21,14 +26,7 @@ const Home = () => {
       <article className="text-center">
         <div className="mb-4">
           <h1>Jim Segal</h1>
-          {/* <p>I'mma jim</p>
-          <nav>
-            <ul className="flex flex-row justify-evenly">
-              <li>github</li>
-              <li>email</li>
-              <li>linkedin</li>
-            </ul>
-          </nav> */}
+          <ExternalSites />
         </div>
         <h4 className="mb-2">Projects</h4>
         {projects.map((project) => (
@@ -48,5 +46,19 @@ const Project = ({ title, route, icon }: Project) => {
       <Icon className="h-8 w-8 mr-2" type={icon} />
       {title}
     </Link>
+  );
+};
+
+const ExternalSites = () => {
+  return (
+    <nav className="mt-2">
+      <ul className="flex flex-row justify-evenly">
+        {externalLinks.map((site) => (
+          <li>
+            <Link to={site.route}>{site.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };

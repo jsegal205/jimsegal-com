@@ -51,7 +51,7 @@ const Recipes = () => {
     <>
       <h1>Recipes</h1>
       <Search onValueChange={searchCallback} onResetClick={resetCallback} />
-      <ol className="flex flex-col">
+      <ol className="flex flex-col space-y-2">
         {recipes.map((recipe: Recipe) => (
           <li key={recipe.slug}>
             <Link to="/recipes/$slug" params={{ slug: recipe.slug }}>
