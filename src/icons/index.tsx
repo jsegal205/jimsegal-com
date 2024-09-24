@@ -1,3 +1,4 @@
+import { Cross } from "./cross";
 import { Exclamation } from "./exclamation";
 import { Github } from "./github";
 import { BaseballHat, CowboyHat } from "./hats";
@@ -12,6 +13,7 @@ import { Temperature } from "./temperature";
 export type IconTypes =
   | "baseball-hat"
   | "cowboy-hat"
+  | "cross"
   | "exclamation"
   | "github"
   | "heart"
@@ -29,6 +31,7 @@ type Icon = {
 const typeToSVG = {
   "baseball-hat": BaseballHat(),
   "cowboy-hat": CowboyHat(),
+  cross: Cross(),
   exclamation: Exclamation(),
   github: Github(),
   heart: Heart(),
