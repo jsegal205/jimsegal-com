@@ -33,6 +33,7 @@ const Recipe = () => {
 
   return (
     <>
+      <Link to="/recipes">{"<< "}All Recipes</Link>
       <h1>{title}</h1>
       {referenceLink ? (
         <Link to={referenceLink}>
