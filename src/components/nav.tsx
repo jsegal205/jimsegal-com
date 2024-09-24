@@ -17,6 +17,7 @@ export const Nav = () => {
           className="bg-slate-400 opacity-70 absolute top-0 left-0 h-screen w-screen z-10"
         ></div>
       ) : null}
+
       <div className="relative">
         <button
           onClick={() => setIsNavOpen((prev) => !prev)}
@@ -28,10 +29,9 @@ export const Nav = () => {
           <div className="w-6 h-1 bg-slate-800"></div>
         </button>
         <div
-          className={`${isNavOpen ? "border-pink-500 border-2 bg-slate-100 rounded-lg w-64 py-4 absolute top-8 z-20 right-0 duration-200 flex flex-col" : "hidden"}`}
+          className={`${isNavOpen ? "flex flex-col border-pink-500 border-2 bg-slate-100 rounded-lg w-64 py-4 absolute top-8 right-0 z-20" : "hidden"}`}
         >
           <button className="self-end mr-4" onClick={() => setIsNavOpen(false)}>
-            {/* close button */}
             <Icon className="h-6 w-6 hover:fill-pink-500" type="cross" />
           </button>
 
