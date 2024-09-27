@@ -46,7 +46,7 @@ const Recipe = () => {
       <div className="flex flex-col justify-between mt-4 sm:flex-row">
         <h2>Ingredients</h2>
         <Button
-          className="self-start"
+          className="my-2 self-start md:my-0"
           onClick={() => {
             navigator.clipboard.writeText(ingredients.replace(/-\s/gm, ""));
           }}
