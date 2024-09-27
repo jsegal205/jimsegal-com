@@ -37,10 +37,11 @@ const Recipe = () => {
       <h1>{title}</h1>
       {referenceLink ? (
         <Link to={referenceLink}>
-          <div className="flex">
-            {referenceLink}
-            <Icon className="ml-1 h-6 w-6" type="open-external" />
-          </div>
+          {referenceLink}
+          <Icon
+            className="inline-block align-bottom ml-2 h-6 w-6"
+            type="open-external"
+          />
         </Link>
       ) : null}
       <div className="flex flex-col justify-between mt-4 sm:flex-row">
