@@ -64,7 +64,7 @@ const Games = () => {
     <>
       <h1>Games</h1>
       <p>My collection of {data.length} tabletop games.</p>
-      <div className="flex justify-between items-baseline">
+      <div className="flex flex-col md:justify-between md:flex-row md:items-baseline">
         <Search
           onValueChange={searchCallback}
           onResetClick={resetCallback}
