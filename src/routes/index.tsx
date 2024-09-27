@@ -3,6 +3,7 @@ import { projects } from "@/api/projects";
 import { type Project } from "@/api/projects";
 import { Link } from "@/components/link";
 import { Icon } from "@/icons";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   component: () => <Home />,
@@ -16,13 +17,7 @@ const externalLinks: Array<{ name: string; route: string }> = [
 const Home = () => {
   return (
     <section className="flex flex-col grow items-center justify-evenly mt-4 md:flex-row md:mt-0">
-      <article className="max-w-[200px] min-w-[100px] md:max-w-[400px] md:min-w-[200px]">
-        <img
-          src="/assets/jim.jpg"
-          title="picture of me, Jim"
-          className=" w-full object-cover rounded-3xl border-2 border-slate-500"
-        />
-      </article>
+      <ImageCarousel />
       <article className="text-center">
         <div className="mb-4">
           <h1 className="font-mono">Jim Segal</h1>
@@ -56,11 +51,57 @@ const ExternalSites = () => {
     <nav className="mt-2">
       <ul className="flex flex-row justify-evenly">
         {externalLinks.map((site) => (
-          <li>
+          <li key={site.name}>
             <Link to={site.route}>{site.name}</Link>
           </li>
         ))}
       </ul>
     </nav>
+  );
+};
+
+const ImageCarousel = () => {
+  // update to objects with image and alt text
+  // maybe try to condense the images so they aren't so big.
+  const images = [
+    "jim.jpg",
+    "jim2.jpg",
+    "jim3.jpg",
+    "jim4.jpg",
+    "jim5.jpg",
+    "jim6.jpg",
+    "jim7.jpg",
+  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const infiniteLoop = () => {
+    if (currentIndex === images.length - 1) {
+      return setCurrentIndex(0);
+    }
+
+    return setCurrentIndex(currentIndex + 1);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      infiniteLoop();
+    }, 10000);
+    return () => clearInterval(interval);
+  });
+
+  return (
+    <article className="flex flex-nowrap overflow-hidden max-w-[200px] min-w-[100px] md:max-w-[400px] md:min-w-[200px]">
+      {images.map((image) => {
+        return (
+          <img
+            key={image}
+            src={`/assets/${image}`}
+            title="picture of me, Jim"
+            style={{ transform: `translate(-${currentIndex * 100}%)` }}
+            className="min-w-full w-full object-cover rounded-3xl border-2 border-slate-500 transition ease-in-out duration-1000"
+          />
+        );
+      })}
+    </article>
   );
 };
