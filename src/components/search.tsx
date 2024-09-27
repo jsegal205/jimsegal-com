@@ -14,7 +14,7 @@ export const Search = ({
   const [search, setSearch] = useState<string>("");
 
   return (
-    <div className="flex items-baseline flex-row my-2">
+    <div className="flex flex-col md:items-baseline md:flex-row my-2">
       <label className="pr-2">Search:</label>
       <input
         className="border-2 border-slate-500 rounded px-3 py-1.5"
@@ -27,7 +27,7 @@ export const Search = ({
       />
       {(Boolean(search) || showReset) && (
         <Button
-          className="ml-2"
+          className="mt-2 md:mt-0 md:ml-2"
           onClick={() => {
             setSearch("");
             onResetClick();

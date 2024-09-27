@@ -113,7 +113,8 @@ const IsColderThan = () => {
   return (
     <>
       <h1 className="mb-2">Is Chicago, IL colder than Alaska, AK currently?</h1>
-      <h2 className="mb-2">{wellIsIt}</h2>
+      <div className="my-4 border-b-slate-500 border-b-2 border-dashed md:border-0 md:my-0" />
+      <h2 className="text-center mb-2">{wellIsIt}</h2>
 
       <LocationCurrentTemp {...chiData} />
       <LocationCurrentTemp {...akData} />
@@ -147,7 +148,10 @@ const IsColderThan = () => {
               locationData?.city &&
               locationData?.currentTemp ? (
                 <>
-                  <h2 className="mb-2">{locationColderThan}</h2>
+                  <h2 className="text-center mb-2">
+                    {locationColderThan === wellIsIt ? "ALSO " : null}
+                    {locationColderThan}
+                  </h2>
                   <LocationCurrentTemp {...locationData} />
                 </>
               ) : null}

@@ -15,8 +15,8 @@ const externalLinks: Array<{ name: string; route: string }> = [
 
 const Home = () => {
   return (
-    <section className="flex flex-col grow items-center  justify-evenly md:flex-row">
-      <article className="max-w-[400px] min-w-[200px]">
+    <section className="flex flex-col grow items-center justify-evenly mt-4 md:flex-row md:mt-0">
+      <article className="max-w-[200px] min-w-[100px] md:max-w-[400px] md:min-w-[200px]">
         <img
           src="/assets/jim.jpg"
           title="picture of me, Jim"
@@ -25,13 +25,15 @@ const Home = () => {
       </article>
       <article className="text-center">
         <div className="mb-4">
-          <h1>Jim Segal</h1>
+          <h1 className="font-mono">Jim Segal</h1>
           <ExternalSites />
         </div>
-        <h4 className="mb-2">Projects</h4>
-        {projects.map((project) => (
-          <Project key={project.route} {...project} />
-        ))}
+        <div className="flex flex-col mb-2">
+          <h4 className="mb-2">Projects</h4>
+          {projects.map((project) => (
+            <Project key={project.route} {...project} />
+          ))}
+        </div>
       </article>
     </section>
   );
@@ -41,10 +43,10 @@ const Project = ({ title, route, icon }: Project) => {
   return (
     <Link
       to={route}
-      className="border-2 border-slate-500 rounded p-2 flex flex-row justify-evenly items-center underline mb-2 last:mb-0 hover:border-pink-500"
+      className="border-2 border-slate-500 rounded-lg px-4 py-2 flex flex-row justify-evenly items-center underline mb-2 last:mb-0 hover:border-pink-500"
     >
-      <Icon className="h-8 w-8 mr-2" type={icon} />
-      {title}
+      <Icon className="flex-none ml-2 mr-4 h-8 w-8" type={icon} />
+      <label className="grow px-2">{title}</label>
     </Link>
   );
 };
