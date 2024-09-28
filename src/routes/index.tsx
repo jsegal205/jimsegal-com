@@ -9,14 +9,6 @@ export const Route = createFileRoute("/")({
   component: () => <Home />,
 });
 
-const externalLinks: Array<{ name: string; route: string }> = [
-  { name: "Github", route: "https://github.com/jsegal205" },
-  { name: "LinkedIn", route: "https://www.linkedin.com/in/jimsegal/" },
-];
-
-// const imageTimerMs = 10000; // 10 seconds
-// const progressTimerMS = imageTimerMs / 100; // 10 seconds
-
 const Home = () => {
   return (
     <section className="flex flex-col grow items-center justify-evenly mt-4 md:flex-row md:mt-0">
@@ -50,6 +42,11 @@ const Project = ({ title, route, icon }: Project) => {
   );
 };
 
+const externalLinks: Array<{ name: string; route: string }> = [
+  { name: "Github", route: "https://github.com/jsegal205" },
+  { name: "LinkedIn", route: "https://www.linkedin.com/in/jimsegal/" },
+];
+
 const ExternalSites = () => {
   return (
     <nav className="mt-2">
@@ -64,7 +61,7 @@ const ExternalSites = () => {
   );
 };
 
-const images = [
+const images: Array<{ asset: string; alt: string }> = [
   {
     asset: "jim.jpg", // headshot
     alt: "A man smiling in a professional headshot, wearing a gray button-up shirt, with short brown hair and a neutral background.",
