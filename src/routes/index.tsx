@@ -63,6 +63,8 @@ const ExternalSites = () => {
 const ImageCarousel = () => {
   // update to objects with image and alt text
   // maybe try to condense the images so they aren't so big.
+  // add timer line to visually indicate that the image will change.
+  // maybe programatically shuffle the array?
   const images = [
     "jim.jpg",
     "jim2.jpg",
