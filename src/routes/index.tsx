@@ -14,10 +14,14 @@ const externalLinks: Array<{ name: string; route: string }> = [
   { name: "LinkedIn", route: "https://www.linkedin.com/in/jimsegal/" },
 ];
 
+// const imageTimerMs = 10000; // 10 seconds
+// const progressTimerMS = imageTimerMs / 100; // 10 seconds
+
 const Home = () => {
   return (
     <section className="flex flex-col grow items-center justify-evenly mt-4 md:flex-row md:mt-0">
       <ImageCarousel />
+
       <article className="text-center">
         <div className="mb-4">
           <h1 className="font-mono">Jim Segal</h1>
@@ -61,49 +65,99 @@ const ExternalSites = () => {
 };
 
 const ImageCarousel = () => {
-  // update to objects with image and alt text
   // maybe try to condense the images so they aren't so big.
   // add timer line to visually indicate that the image will change.
-  // maybe programatically shuffle the array?
   const images = [
-    "jim.jpg",
-    "jim2.jpg",
-    "jim3.jpg",
-    "jim4.jpg",
-    "jim5.jpg",
-    "jim6.jpg",
-    "jim7.jpg",
+    {
+      asset: "jim.jpg", // headshot
+      alt: "A man smiling in a professional headshot, wearing a gray button-up shirt, with short brown hair and a neutral background.",
+    },
+    {
+      asset: "jim2.jpg", // sparkle jacket
+      alt: "A man in a black sequined jacket and jeans playfully poses with finger guns in a clothing store.",
+    },
+    {
+      asset: "jim3.jpg", //moonpie
+      alt: "A man in a black shirt is sitting at a table biting into a chocolate Moon Pie.",
+    },
+    {
+      asset: "jim4.jpg", // spock kisses
+      alt: "A man sitting on the floor in a kitchen, smiling as a black and white dog wearing a green harness affectionately licks his face.",
+    },
+    {
+      asset: "jim5.jpg", // beach contemplation
+      alt: "A man standing barefoot in shallow ocean water at the beach, holding his shoes in his hand, gazing at the horizon as clouds fill the sky.",
+    },
+    {
+      asset: "jim6.jpg", // yelling at astronaut
+      alt: "A man in casual clothing playfully poses with a mannequin dressed in a NASA astronaut suit inside a modern indoor setting.",
+    },
+    {
+      asset: "jim7.jpg", // rock contemplation
+      alt: "A man in a grey shirt and black shorts stands on rocky terrain with a forested background, arms crossed and facing the camera. The sunlight creates visible lens flares in the image.",
+    },
   ];
+
+  const imageRotationMS = 5000;
+  const progressUpdateMS = imageRotationMS / 100;
+
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
 
   const infiniteLoop = () => {
-    if (currentIndex === images.length - 1) {
-      return setCurrentIndex(0);
-    }
-
-    return setCurrentIndex(currentIndex + 1);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1,
+    );
   };
 
   useEffect(() => {
+    const startTime = Date.now();
+
     const interval = setInterval(() => {
       infiniteLoop();
-    }, 10000);
-    return () => clearInterval(interval);
-  });
+      setProgress(0);
+    }, imageRotationMS);
+
+    const progressInterval = setInterval(() => {
+      const elapsedTime = Date.now() - startTime;
+      const newProgress = (elapsedTime % imageRotationMS) / progressUpdateMS; // Calculate progress (in percentage)
+      setProgress(newProgress);
+    }, progressUpdateMS);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(progressInterval);
+    };
+  }, [currentIndex]);
 
   return (
-    <article className="flex flex-nowrap overflow-hidden max-w-[200px] min-w-[100px] md:max-w-[400px] md:min-w-[200px]">
-      {images.map((image) => {
-        return (
+    <section className="flex flex-col max-w-[200px] min-w-[100px] md:max-w-[400px] md:min-w-[200px] overflow-hidden rounded-3xl border-2 border-slate-500">
+      <article className="flex flex-nowrap">
+        {images.map((image) => (
           <img
-            key={image}
-            src={`/assets/${image}`}
-            title="picture of me, Jim"
+            key={image.asset}
+            src={`/assets/${image.asset}`}
+            title={image.alt}
             style={{ transform: `translate(-${currentIndex * 100}%)` }}
-            className="min-w-full w-full object-cover rounded-3xl border-2 border-slate-500 transition ease-in-out duration-1000"
+            className="min-w-full w-full object-cover transition ease-in-out duration-1000"
           />
-        );
-      })}
-    </article>
+        ))}
+      </article>
+      <ProgressBar progress={progress} />
+    </section>
+  );
+};
+
+const ProgressBar = ({ progress }: { progress: number }) => {
+  return (
+    <div className="bg-slate-500 h-3">
+      <div
+        className="h-full bg-pink-500"
+        style={{
+          width: `${progress}%`,
+          transition: "width 0.04s ease-in-out",
+        }}
+      ></div>
+    </div>
   );
 };
