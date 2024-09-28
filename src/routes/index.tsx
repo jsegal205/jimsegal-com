@@ -64,39 +64,38 @@ const ExternalSites = () => {
   );
 };
 
-const ImageCarousel = () => {
-  // maybe try to condense the images so they aren't so big.
-  const images = [
-    {
-      asset: "jim.jpg", // headshot
-      alt: "A man smiling in a professional headshot, wearing a gray button-up shirt, with short brown hair and a neutral background.",
-    },
-    {
-      asset: "jim2.jpg", // sparkle jacket
-      alt: "A man in a black sequined jacket and jeans playfully poses with finger guns in a clothing store.",
-    },
-    {
-      asset: "jim3.jpg", //moonpie
-      alt: "A man in a black shirt is sitting at a table biting into a chocolate Moon Pie.",
-    },
-    {
-      asset: "jim4.jpg", // spock kisses
-      alt: "A man sitting on the floor in a kitchen, smiling as a black and white dog wearing a green harness affectionately licks his face.",
-    },
-    {
-      asset: "jim5.jpg", // beach contemplation
-      alt: "A man standing barefoot in shallow ocean water at the beach, holding his shoes in his hand, gazing at the horizon as clouds fill the sky.",
-    },
-    {
-      asset: "jim6.jpg", // yelling at astronaut
-      alt: "A man in casual clothing playfully poses with a mannequin dressed in a NASA astronaut suit inside a modern indoor setting.",
-    },
-    {
-      asset: "jim7.jpg", // rock contemplation
-      alt: "A man in a grey shirt and black shorts stands on rocky terrain with a forested background, arms crossed and facing the camera. The sunlight creates visible lens flares in the image.",
-    },
-  ];
+const images = [
+  {
+    asset: "jim.jpg", // headshot
+    alt: "A man smiling in a professional headshot, wearing a gray button-up shirt, with short brown hair and a neutral background.",
+  },
+  {
+    asset: "jim2.jpg", // sparkle jacket
+    alt: "A man in a black sequined jacket and jeans playfully poses with finger guns in a clothing store.",
+  },
+  {
+    asset: "jim3.jpg", //moonpie
+    alt: "A man in a black shirt is sitting at a table biting into a chocolate Moon Pie.",
+  },
+  {
+    asset: "jim4.jpg", // spock kisses
+    alt: "A man sitting on the floor in a kitchen, smiling as a black and white dog wearing a green harness affectionately licks his face.",
+  },
+  {
+    asset: "jim5.jpg", // beach contemplation
+    alt: "A man standing barefoot in shallow ocean water at the beach, holding his shoes in his hand, gazing at the horizon as clouds fill the sky.",
+  },
+  {
+    asset: "jim6.jpg", // yelling at astronaut
+    alt: "A man in casual clothing playfully poses with a mannequin dressed in a NASA astronaut suit inside a modern indoor setting.",
+  },
+  {
+    asset: "jim7.jpg", // rock contemplation
+    alt: "A man in a grey shirt and black shorts stands on rocky terrain with a forested background, arms crossed and facing the camera. The sunlight creates visible lens flares in the image.",
+  },
+];
 
+const ImageCarousel = () => {
   const imageRotationMS = 5000;
   const progressUpdateMS = imageRotationMS / 100;
 
