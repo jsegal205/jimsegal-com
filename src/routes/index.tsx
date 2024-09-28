@@ -66,7 +66,6 @@ const ExternalSites = () => {
 
 const ImageCarousel = () => {
   // maybe try to condense the images so they aren't so big.
-  // add timer line to visually indicate that the image will change.
   const images = [
     {
       asset: "jim.jpg", // headshot
@@ -131,7 +130,7 @@ const ImageCarousel = () => {
   }, [currentIndex]);
 
   return (
-    <section className="flex flex-col max-w-[200px] min-w-[100px] md:max-w-[400px] md:min-w-[200px] overflow-hidden rounded-3xl border-2 border-slate-500">
+    <section className="relative flex flex-col max-w-[200px] min-w-[100px] md:max-w-[400px] md:min-w-[200px] overflow-hidden rounded-3xl border-2 border-slate-500">
       <article className="flex flex-nowrap">
         {images.map((image) => (
           <img
@@ -148,16 +147,14 @@ const ImageCarousel = () => {
   );
 };
 
-const ProgressBar = ({ progress }: { progress: number }) => {
-  return (
-    <div className="bg-slate-500 h-3">
-      <div
-        className="h-full bg-pink-500"
-        style={{
-          width: `${progress}%`,
-          transition: "width 0.04s ease-in-out",
-        }}
-      ></div>
-    </div>
-  );
-};
+const ProgressBar = ({ progress }: { progress: number }) => (
+  <div className="absolute bottom-0 left-0 w-full h-2 md:h-3 bg-transparent">
+    <div
+      className="h-full bg-pink-500 rounded"
+      style={{
+        width: `${progress}%`,
+        transition: "width 0.04s ease-in-out",
+      }}
+    ></div>
+  </div>
+);
