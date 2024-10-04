@@ -18,7 +18,7 @@ const TanStackRouterDevtools = import.meta.env.PROD
 export const Route = createRootRoute({
   component: () => (
     <QueryClientProvider client={queryClient}>
-      <main className="min-h-screen flex flex-col justify-between">
+      <main className="bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col justify-between">
         <Outlet />
 
         <footer className="self-bottom">
@@ -32,7 +32,12 @@ export const Route = createRootRoute({
             >
               source
             </a>
-            on <Icon type="github" className="ml-1 my-auto h-3 w-3" />)
+            on{" "}
+            <Icon
+              type="github"
+              className="ml-1 my-auto h-3 w-3 dark:fill-slate-100"
+            />
+            )
           </div>
           <Suspense>
             <TanStackRouterDevtools />

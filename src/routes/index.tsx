@@ -4,6 +4,7 @@ import { type Project } from "@/api/projects";
 import { Link } from "@/components/link";
 import { Icon } from "@/icons";
 import { useEffect, useState } from "react";
+import { DarkModeToggle } from "@/components/darkModeToggle";
 
 export const Route = createFileRoute("/")({
   component: () => <Home />,
@@ -18,6 +19,7 @@ const Home = () => {
         <div className="mb-4">
           <h1 className="font-mono">Jim Segal</h1>
           <ExternalSites />
+          <DarkModeToggle />
         </div>
         <div className="flex flex-col mb-2">
           <h4 className="mb-2">Projects</h4>
@@ -34,7 +36,7 @@ const Project = ({ title, route, icon }: Project) => {
   return (
     <Link
       to={route}
-      className="border-2 border-slate-500 rounded-lg px-4 py-2 flex flex-row justify-evenly items-center underline mb-2 last:mb-0 hover:border-pink-500"
+      className="border-2 border-slate-500 rounded-lg px-4 py-2 flex flex-row justify-evenly items-center underline mb-2 last:mb-0 dark:fill-slate-100 hover:border-pink-500 dark:hover:fill-pink-500"
     >
       <Icon className="flex-none ml-2 mr-4 h-8 w-8" type={icon} />
       <label className="grow px-2">{title}</label>
