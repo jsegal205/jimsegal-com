@@ -17,7 +17,7 @@ export const Search = ({
     <div className="flex flex-col md:items-baseline md:flex-row my-2">
       <label className="pr-2">Search:</label>
       <input
-        className="border-2 border-slate-500 rounded px-3 py-1.5"
+        className="border-2 border-slate-500 rounded px-3 py-1.5 bg-slate-100 dark:text-slate-900"
         type="text"
         value={search}
         onChange={({ target: { value } }) => {

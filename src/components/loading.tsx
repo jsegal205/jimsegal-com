@@ -10,7 +10,10 @@ export const Loading = ({
 }) => (
   <div className="flex items-center">
     {Boolean(icon) ? (
-      <Icon type={icon!} className="animate-spin mr-3 h-5 w-5 align-center" />
+      <Icon
+        type={icon!}
+        className="animate-spin mr-3 h-5 w-5 align-center dark:fill-slate-100"
+      />
     ) : (
       <svg
         className="animate-spin mr-3 h-5 w-5 align-center"
