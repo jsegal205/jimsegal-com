@@ -3,6 +3,7 @@ import { Exclamation } from "./exclamation";
 import { Github } from "./github";
 import { BaseballHat, CowboyHat } from "./hats";
 import { Heart } from "./heart";
+import { Loading } from "./loading";
 import { Meeple } from "./meeple";
 import { OpenExternal } from "./open-external";
 import { RecipeBook } from "./recipe-book";
@@ -17,6 +18,7 @@ export type IconTypes =
   | "exclamation"
   | "github"
   | "heart"
+  | "loading"
   | "meeple"
   | "open-external"
   | "recipe-book"
@@ -35,6 +37,7 @@ const typeToSVG = {
   exclamation: Exclamation(),
   github: Github(),
   heart: Heart(),
+  loading: Loading(),
   meeple: Meeple(),
   "open-external": OpenExternal(),
   "recipe-book": RecipeBook(),
