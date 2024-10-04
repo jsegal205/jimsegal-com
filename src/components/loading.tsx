@@ -16,7 +16,7 @@ export const Loading = ({
       />
     ) : (
       <svg
-        className="animate-spin mr-3 h-5 w-5 align-center"
+        className="animate-spin mr-3 h-5 w-5 align-center dark:fill-slate-100"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

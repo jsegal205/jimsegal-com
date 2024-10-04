@@ -36,10 +36,7 @@ const Recipe = () => {
       <Link to="/recipes">{"<< "}All Recipes</Link>
       <h1>{title}</h1>
       {referenceLink ? (
-        <Link
-          className="dark:fill-slate-100 dark:hover:fill-pink-500"
-          to={referenceLink}
-        >
+        <Link to={referenceLink}>
           {referenceLink}
           <Icon
             className="inline-block align-bottom ml-2 h-6 w-6"

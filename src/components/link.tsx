@@ -8,7 +8,7 @@ const Anchor = ({
   return (
     <a
       className={[
-        "underline hover:decoration-pink-500 hover:text-pink-500 hover:fill-pink-500",
+        "underline hover:decoration-pink-500 hover:text-pink-500 hover:fill-pink-500 dark:fill-slate-100 dark:hover:fill-pink-500",
         className,
       ].join(" ")}
       {...props}
