@@ -1,17 +1,7 @@
-import { useEffect } from "react";
 import { useDarkModeContext } from "@/contexts/darkMode";
 
 export const DarkModeToggle = () => {
   const { darkModeEnabled, toggleDarkMode } = useDarkModeContext();
-  const htmlClasses = document.querySelector("html")!.classList;
-
-  useEffect(() => {
-    if (darkModeEnabled) {
-      htmlClasses.add("dark");
-    } else {
-      htmlClasses.remove("dark");
-    }
-  }, [darkModeEnabled]);
 
   return (
     <div className="flex justify-center">
