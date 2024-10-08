@@ -3,10 +3,11 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { fetchAllGames } from "@/api/games";
 import { type Game, type Games } from "@/api/games";
+import { Button } from "@/components/button";
 import { Error } from "@/components/error";
+import { Link } from "@/components/link";
 import { Loading } from "@/components/loading";
 import { Search, SearchEmptyResults } from "@/components/search";
-import { Button } from "@/components/button";
 
 export const Route = createFileRoute("/_withnav/games/")({
   component: () => <Games />,
@@ -72,25 +73,28 @@ const Games = () => {
         />
         <Button onClick={randomGameCallback}>Pick a random game</Button>
       </div>
-      <ol className="flex flex-wrap justify-evenly">
-        {games.map((game: Game) => (
-          <li key={game.bgg_id}>
-            <a
-              className="flex flex-col items-center border-2 border-slate-500 rounded m-5 p-4 underline w-[225px] hover:decoration-pink-500 hover:text-pink-500 hover:border-pink-500"
-              href={game.url}
-            >
-              <img
-                className="max-h-[200px] mb-2"
-                src={game.image_url}
-                alt={`cover art for ${game.name}`}
-              />
-              <label className="text-xl">{game.name}</label>
-            </a>
-          </li>
-        ))}
-      </ol>
 
-      {games.length === 0 ? <SearchEmptyResults model="games" /> : null}
+      {games.length === 0 ? (
+        <SearchEmptyResults model="games" />
+      ) : (
+        <ol className="flex flex-wrap justify-evenly">
+          {games.map(({ bgg_id, image_url, name, url }: Game) => (
+            <li key={bgg_id}>
+              <Link
+                to={url}
+                className="flex flex-col items-center border-2 border-slate-500 rounded m-5 p-4 underline w-[225px] hover:border-pink-500"
+              >
+                <img
+                  className="max-h-[200px] mb-2"
+                  src={image_url}
+                  alt={`cover art for ${name}`}
+                />
+                <label className="text-xl">{name}</label>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      )}
     </>
   );
 };
