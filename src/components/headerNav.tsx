@@ -1,12 +1,19 @@
 import { Link } from "@/components/link";
 import { Nav } from "@/components/nav";
+import { DarkModeToggle } from "./darkModeToggle";
 
 export const HeaderNav = () => (
   <header className="p-4 border-b-2 border-slate-400 flex justify-between">
-    <Link className="font-mono text-2xl !no-underline hover:!underline" to="/">
+    <Link
+      className="self-center font-mono text-3xl !no-underline hover:!underline"
+      to="/"
+    >
       Jim Segal
     </Link>
 
-    <Nav />
+    <div className="flex gap-8">
+      <DarkModeToggle />
+      <Nav />
+    </div>
   </header>
 );

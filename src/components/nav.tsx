@@ -22,17 +22,23 @@ export const Nav = () => {
         <button
           onClick={() => setIsNavOpen((prev) => !prev)}
           type="button"
-          className="space-y-1"
+          className="space-y-1 py-3"
         >
           {[...Array(3)].map((ele) => (
-            <div key={ele} className="w-6 h-1 rounded bg-slate-800"></div>
+            <div
+              key={ele}
+              className="w-6 h-1 rounded bg-slate-900 dark:bg-slate-100"
+            ></div>
           ))}
         </button>
         <div
-          className={`${isNavOpen ? "flex flex-col border-pink-500 border-2 bg-slate-100 rounded-lg w-64 py-4 absolute top-8 right-0 z-[1001]" : "hidden"}`}
+          className={`${isNavOpen ? "flex flex-col border-pink-500 border-2 bg-slate-100 dark:bg-slate-900 rounded-lg w-64 py-4 absolute top-8 right-0 z-[1001]" : "hidden"}`}
         >
           <button className="self-end mr-4" onClick={() => setIsNavOpen(false)}>
-            <Icon className="h-6 w-6 hover:fill-pink-500" type="cross" />
+            <Icon
+              className="h-6 w-6 hover:fill-pink-500 dark:fill-slate-100"
+              type="cross"
+            />
           </button>
 
           <ul className="flex flex-col">

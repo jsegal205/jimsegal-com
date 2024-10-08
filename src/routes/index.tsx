@@ -4,6 +4,7 @@ import { type Project } from "@/api/projects";
 import { Link } from "@/components/link";
 import { Icon } from "@/icons";
 import { useEffect, useState } from "react";
+import { DarkModeToggle } from "@/components/darkModeToggle";
 
 export const Route = createFileRoute("/")({
   component: () => <Home />,
@@ -11,22 +12,27 @@ export const Route = createFileRoute("/")({
 
 const Home = () => {
   return (
-    <section className="flex flex-col grow items-center justify-evenly mt-4 md:flex-row md:mt-0">
-      <ImageCarousel />
+    <>
+      <div className="absolute top-2 right-2">
+        <DarkModeToggle />
+      </div>
+      <section className="flex flex-col grow items-center justify-evenly mt-4 md:flex-row md:mt-0">
+        <ImageCarousel />
 
-      <article className="text-center">
-        <div className="mb-4">
-          <h1 className="font-mono">Jim Segal</h1>
-          <ExternalSites />
-        </div>
-        <div className="flex flex-col mb-2">
-          <h4 className="mb-2">Projects</h4>
-          {projects.map((project) => (
-            <Project key={project.route} {...project} />
-          ))}
-        </div>
-      </article>
-    </section>
+        <article className="text-center">
+          <div className="mb-4">
+            <h1 className="font-mono">Jim Segal</h1>
+            <ExternalSites />
+          </div>
+          <div className="flex flex-col mb-2">
+            <h4 className="mb-2">Projects</h4>
+            {projects.map((project) => (
+              <Project key={project.route} {...project} />
+            ))}
+          </div>
+        </article>
+      </section>
+    </>
   );
 };
 
