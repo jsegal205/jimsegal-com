@@ -22,7 +22,7 @@ export const Nav = () => {
         <button
           onClick={() => setIsNavOpen((prev) => !prev)}
           type="button"
-          className="space-y-1"
+          className="space-y-1 py-3"
         >
           {[...Array(3)].map((ele) => (
             <div
