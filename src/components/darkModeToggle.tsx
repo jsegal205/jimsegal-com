@@ -1,19 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDarkModeContext } from "@/contexts/darkMode";
 
 export const DarkModeToggle = () => {
-  const isSystemDark = window.matchMedia(
-    "(prefers-color-scheme: dark)",
-  ).matches;
+  const { darkModeEnabled, toggleDarkMode } = useDarkModeContext();
   const htmlClasses = document.querySelector("html")!.classList;
-  const [isDark, setIsDark] = useState<boolean>(isSystemDark);
 
   useEffect(() => {
-    if (isDark) {
+    if (darkModeEnabled) {
       htmlClasses.add("dark");
     } else {
       htmlClasses.remove("dark");
     }
-  }, [isDark]);
+  }, [darkModeEnabled]);
 
   return (
     <div className="flex justify-center">
@@ -21,14 +19,14 @@ export const DarkModeToggle = () => {
         type="checkbox"
         name="light-switch"
         className="sr-only"
-        onChange={() => setIsDark(!isDark)}
-        checked={isDark}
+        onChange={toggleDarkMode}
+        checked={darkModeEnabled}
       />
       <span className="sr-only">Switch to light / dark version</span>
 
       <button
         className="rounded-lg cursor-pointer px-4 py-3 border-2 border-slate-500 dark:border-slate-400 flex flex-col"
-        onClick={() => setIsDark(!isDark)}
+        onClick={toggleDarkMode}
       >
         <svg
           className="hidden dark:inline-block"
