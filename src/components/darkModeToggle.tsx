@@ -4,19 +4,16 @@ export const DarkModeToggle = () => {
   const isSystemDark = window.matchMedia(
     "(prefers-color-scheme: dark)",
   ).matches;
-  const htmlClasses = document.querySelector("html")?.classList;
-
-  const [theme, setTheme] = useState<"light" | "dark">(
-    isSystemDark ? "dark" : "light",
-  );
+  const htmlClasses = document.querySelector("html")!.classList;
+  const [isDark, setIsDark] = useState<boolean>(isSystemDark);
 
   useEffect(() => {
-    if (theme === "dark") {
-      document.querySelector("html")?.classList.add("dark");
+    if (isDark) {
+      htmlClasses.add("dark");
     } else {
-      document.querySelector("html")?.classList.remove("dark");
+      htmlClasses.remove("dark");
     }
-  }, [theme]);
+  }, [isDark]);
 
   return (
     <div className="flex justify-center">
@@ -24,18 +21,14 @@ export const DarkModeToggle = () => {
         type="checkbox"
         name="light-switch"
         className="sr-only"
-        onChange={() =>
-          setTheme(htmlClasses?.contains("dark") ? "light" : "dark")
-        }
-        checked={true}
+        onChange={() => setIsDark(!isDark)}
+        checked={isDark}
       />
       <span className="sr-only">Switch to light / dark version</span>
 
       <button
         className="rounded-lg cursor-pointer px-4 py-3 border-2 border-slate-500 dark:border-slate-400 flex flex-col"
-        onClick={() =>
-          setTheme(htmlClasses?.contains("dark") ? "light" : "dark")
-        }
+        onClick={() => setIsDark(!isDark)}
       >
         <svg
           className="hidden dark:inline-block"
