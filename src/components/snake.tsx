@@ -144,14 +144,14 @@ export const Snake = () => {
         ) : (
           <>
             {speed === 0 || gameOver ? (
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center bg-slate-300 p-6 rounded-lg border-2 border-slate-500">
                 {gameOver ? (
                   <>
                     <h2 className="text-red-700 text-4xl">Game Over</h2>
                     <h3 className="text-green-800">Score: {score}</h3>
                   </>
                 ) : null}
-                <h3 className="text-center">
+                <h3 className="text-center dark:text-slate-800">
                   {gameOver ? (
                     <label className="block">Play again?</label>
                   ) : null}
