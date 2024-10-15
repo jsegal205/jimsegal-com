@@ -40,9 +40,12 @@ const Project = ({ title, route, icon }: Project) => {
   return (
     <Link
       to={route}
-      className="border-2 border-slate-500 rounded-lg px-4 py-2 flex flex-row justify-evenly items-center underline mb-2 last:mb-0 hover:border-pink-500"
+      className="border-2 border-slate-500 rounded-lg px-4 py-2 flex flex-row justify-evenly items-center underline mb-2 last:mb-0 hover:border-pink-500 group"
     >
-      <Icon className="flex-none ml-2 mr-4 h-8 w-8" type={icon} />
+      <Icon
+        className="flex-none ml-2 mr-4 h-8 w-8 group-hover:animate-spin"
+        type={icon}
+      />
       <label className="grow px-2">{title}</label>
     </Link>
   );
