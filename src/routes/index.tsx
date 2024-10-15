@@ -46,7 +46,7 @@ const Project = ({ title, route, icon }: Project) => {
         className="flex-none ml-2 mr-4 h-8 w-8 group-hover:animate-spin"
         type={icon}
       />
-      <label className="grow px-2">{title}</label>
+      <label className="grow px-2 hover:cursor-pointer">{title}</label>
     </Link>
   );
 };
