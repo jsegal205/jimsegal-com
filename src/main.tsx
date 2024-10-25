@@ -1,6 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
+import {
+  RouterProvider,
+  createRouter,
+  ScrollRestoration,
+} from "@tanstack/react-router";
 import * as Sentry from "@sentry/react";
 
 import { routeTree } from "@/routeTree.gen";
@@ -27,13 +31,16 @@ if (import.meta.env.PROD) {
 
 const router = createRouter({
   defaultNotFoundComponent: () => (
-    <section className="m-4">
-      <HeaderNav />
+    <>
+      <ScrollRestoration />
+      <section className="m-4">
+        <HeaderNav />
 
-      <section className="p-4">
-        <NotFound />
+        <section className="p-4">
+          <NotFound />
+        </section>
       </section>
-    </section>
+    </>
   ),
   routeTree,
 });
