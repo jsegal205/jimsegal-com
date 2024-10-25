@@ -1,14 +1,21 @@
 import { HeaderNav } from "@/components/headerNav";
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  Outlet,
+  ScrollRestoration,
+} from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_withnav")({
   component: () => (
-    <section className="m-4">
-      <HeaderNav />
+    <>
+      <ScrollRestoration />
+      <section className="m-4">
+        <HeaderNav />
 
-      <section className="p-4">
-        <Outlet />
+        <section className="p-4">
+          <Outlet />
+        </section>
       </section>
-    </section>
+    </>
   ),
 });
