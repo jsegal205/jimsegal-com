@@ -110,7 +110,9 @@ const IsColderThan = () => {
 
   return (
     <>
-      <h1 className="mb-2">Is Chicago, IL colder than Alaska, AK currently?</h1>
+      <h1 className="mb-2">
+        Is Chicago, IL colder than Anchorage, AK currently?
+      </h1>
       <div className="my-4 border-b-slate-500 border-b-2 border-dashed md:border-0 md:my-0" />
       <h2 className="text-center mb-2">{wellIsIt}</h2>
 
