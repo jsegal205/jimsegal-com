@@ -63,17 +63,15 @@ const IsColderThan = () => {
   }, [locationData, akData]);
 
   const tempCompare = (akTemp: number, compareTemp: number): string => {
-    let isIt = "NOPE";
-
     if (akTemp > compareTemp) {
-      isIt = "YEP";
+      return "YEP";
     }
 
     if (akTemp > compareTemp - 5) {
-      isIt = "ALMOST";
+      return "ALMOST";
     }
 
-    return isIt;
+    return "NOPE";
   };
 
   const browserLocationEnabled = ({
