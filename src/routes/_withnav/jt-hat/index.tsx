@@ -1,34 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Loading } from "@/components/loading";
 import { Button } from "@/components/button";
+import { IconTypes } from "@/icons";
 
 export const Route = createFileRoute("/_withnav/jt-hat/")({
   component: () => <IsJTWearingAHat />,
 });
 
+const hats: Array<{ icon: IconTypes; label: string }> = [
+  { icon: "cowboy-hat", label: "cowboy hats" },
+  { icon: "baseball-hat", label: "baseball hats" },
+];
+
 const IsJTWearingAHat = () => {
-  const [checkBaseball, setCheckBaseball] = useState(false);
-  const [checkCowboy, setCheckCowboy] = useState(false);
-  const [isHatWorn, setIsHatWorn] = useState(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [hatIndex, setHatIndex] = useState<number>(0);
+  const [isCheckingHats, setIsCheckingHats] = useState(false);
+  const [isDoneChecking, setIsDoneChecking] = useState(false);
+
+  useEffect(() => {
+    if (!isCheckingHats) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setHatIndex((prevHatIndex) => {
+        if (hatIndex + 1 >= hats.length) {
+          setIsCheckingHats(false);
+          setIsDoneChecking(true);
+          return prevHatIndex;
+        }
+
+        return prevHatIndex + 1;
+      });
+    }, 2000); // rotate every 2 seconds
+
+    return () => clearInterval(interval);
+  }, [isCheckingHats, hatIndex]);
 
   const handleButtonClick = () => {
-    setIsButtonDisabled(true);
-    setIsHatWorn(false);
-    setCheckCowboy(false);
-    setCheckBaseball(true);
-
-    setTimeout(() => {
-      setCheckBaseball(false);
-      setCheckCowboy(true);
-    }, 2000);
-
-    setTimeout(() => {
-      setCheckCowboy(false);
-      setIsHatWorn(true);
-      setIsButtonDisabled(false);
-    }, 4000);
+    setHatIndex(0);
+    setIsCheckingHats(true);
+    setIsDoneChecking(false);
   };
 
   return (
@@ -42,20 +55,23 @@ const IsJTWearingAHat = () => {
       <Button
         className="self-center mt-2"
         onClick={handleButtonClick}
-        disabled={isButtonDisabled}
+        disabled={isCheckingHats}
       >
         Check
       </Button>
 
-      <div className="flex justify-center">
-        {checkBaseball && (
-          <Loading icon="baseball-hat" label="Checking for baseball hats" />
-        )}
-        {checkCowboy && (
-          <Loading icon="cowboy-hat" label="Checking for cowboy hats" />
-        )}
-        {isHatWorn && <h2 className="text-6xl">Very Likely</h2>}
-      </div>
+      {isDoneChecking ? (
+        <div className="flex justify-center">
+          <h2 className="text-6xl mt-3">Very Likely</h2>
+        </div>
+      ) : isCheckingHats ? (
+        <div className="flex justify-center">
+          <Loading
+            icon={hats[hatIndex].icon}
+            label={`Checking for ${hats[hatIndex].label}`}
+          />
+        </div>
+      ) : null}
     </div>
   );
 };
