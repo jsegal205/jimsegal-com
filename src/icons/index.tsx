@@ -5,10 +5,12 @@ import { BaseballHat, CowboyHat } from "./hats";
 import { Heart } from "./heart";
 import { Loading } from "./loading";
 import { Meeple } from "./meeple";
+import { MoonWithStar } from "./moon-with-star";
 import { OpenExternal } from "./open-external";
 import { RecipeBook } from "./recipe-book";
 import { Shorts } from "./shorts";
 import { Snake } from "./snake";
+import { Sun } from "./sun";
 import { Temperature } from "./temperature";
 
 export type IconTypes =
@@ -20,10 +22,12 @@ export type IconTypes =
   | "heart"
   | "loading"
   | "meeple"
+  | "moon-with-star"
   | "open-external"
   | "recipe-book"
   | "shorts"
   | "snake"
+  | "sun"
   | "temperature";
 type Icon = {
   className?: string;
@@ -39,10 +43,12 @@ const typeToSVG = {
   heart: Heart(),
   loading: Loading(),
   meeple: Meeple(),
+  "moon-with-star": MoonWithStar(),
   "open-external": OpenExternal(),
   "recipe-book": RecipeBook(),
   shorts: Shorts(),
   snake: Snake(),
+  sun: Sun(),
   temperature: Temperature(),
 };
 
