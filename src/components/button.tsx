@@ -9,13 +9,11 @@ export const Button = ({
   children,
   kind = "button",
   ...rest
-}: Props) => {
-  return (
-    <button className={[getClass(kind), className].join(" ")} {...rest}>
-      {children}
-    </button>
-  );
-};
+}: Props) => (
+  <button className={[getClass(kind), className].join(" ")} {...rest}>
+    {children}
+  </button>
+);
 
 const getClass = (kind: ButtonKind) => {
   switch (kind) {
