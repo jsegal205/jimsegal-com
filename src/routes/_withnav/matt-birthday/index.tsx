@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Loading } from "@/components/loading";
 import { Button } from "@/components/button";
 import { Icon } from "@/icons";
+import { Link } from "@/components/link";
 
 export const Route = createFileRoute("/_withnav/matt-birthday/")({
   component: () => <IsMattsBirthday />,
@@ -30,6 +31,14 @@ const IsMattsBirthday = () => {
     setIsDoneChecking(false);
   };
 
+  const today = new Date();
+  const isTodayJune7 = today.getMonth() === 5 && today.getDate() === 7;
+
+  const cakeClass = [
+    "h-20 w-20 dark:fill-slate-100",
+    isTodayJune7 ? "" : "rotate-180",
+  ].join(" ");
+
   return (
     <div className="flex flex-col justify-center text-center">
       <h1>Is today Matt's birthday?</h1>
@@ -47,16 +56,27 @@ const IsMattsBirthday = () => {
       </Button>
 
       {isDoneChecking ? (
-        <div className="flex justify-center flex-row">
-          <Icon
-            className="h-20 w-20 mr-4 dark:fill-slate-100"
-            type="birthday-cake"
-          />
-          <h2 className="text-6xl mt-3">Very Likely</h2>
-          <Icon
-            className="h-20 w-20 ml-4 dark:fill-slate-100"
-            type="birthday-cake"
-          />
+        <div>
+          <div className="flex justify-center flex-row">
+            <Icon className={cakeClass} type="birthday-cake" />
+            <h2 className="text-6xl mt-3 mx-4">
+              {isTodayJune7 ? "YUP" : "Not so likely"}
+            </h2>
+            <Icon className={cakeClass} type="birthday-cake" />
+          </div>
+
+          <Link
+            className="text-sm"
+            to={
+              "https://chatgpt.com/share/68444f4e-db98-800b-afa6-dc1927210dc1" as string
+            }
+          >
+            source
+            <Icon
+              className="inline-block align-bottom ml-2 h-4 w-4"
+              type="open-external"
+            />
+          </Link>
         </div>
       ) : isChecking ? (
         <div className="flex justify-center">
