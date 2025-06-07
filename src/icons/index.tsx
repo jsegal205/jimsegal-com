@@ -1,3 +1,4 @@
+import { BirthdayCake } from "./birthday-cake";
 import { Cross } from "./cross";
 import { Exclamation } from "./exclamation";
 import { Github } from "./github";
@@ -14,6 +15,7 @@ import { Sun } from "./sun";
 import { Temperature } from "./temperature";
 
 export type IconTypes =
+  | "birthday-cake"
   | "baseball-hat"
   | "cowboy-hat"
   | "cross"
@@ -35,6 +37,7 @@ type Icon = {
 };
 
 const typeToSVG = {
+  "birthday-cake": BirthdayCake(),
   "baseball-hat": BaseballHat(),
   "cowboy-hat": CowboyHat(),
   cross: Cross(),

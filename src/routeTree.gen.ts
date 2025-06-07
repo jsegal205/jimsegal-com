@@ -16,6 +16,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as WithnavSnakeIndexImport } from './routes/_withnav/snake/index'
 import { Route as WithnavShortsIndexImport } from './routes/_withnav/shorts/index'
 import { Route as WithnavRecipesIndexImport } from './routes/_withnav/recipes/index'
+import { Route as WithnavMattBirthdayIndexImport } from './routes/_withnav/matt-birthday/index'
 import { Route as WithnavJtHatIndexImport } from './routes/_withnav/jt-hat/index'
 import { Route as WithnavIscolderthanIndexImport } from './routes/_withnav/iscolderthan/index'
 import { Route as WithnavGamesIndexImport } from './routes/_withnav/games/index'
@@ -45,6 +46,11 @@ const WithnavShortsIndexRoute = WithnavShortsIndexImport.update({
 
 const WithnavRecipesIndexRoute = WithnavRecipesIndexImport.update({
   path: '/recipes/',
+  getParentRoute: () => WithnavRoute,
+} as any)
+
+const WithnavMattBirthdayIndexRoute = WithnavMattBirthdayIndexImport.update({
+  path: '/matt-birthday/',
   getParentRoute: () => WithnavRoute,
 } as any)
 
@@ -114,6 +120,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WithnavJtHatIndexImport
       parentRoute: typeof WithnavImport
     }
+    '/_withnav/matt-birthday/': {
+      id: '/_withnav/matt-birthday/'
+      path: '/matt-birthday'
+      fullPath: '/matt-birthday'
+      preLoaderRoute: typeof WithnavMattBirthdayIndexImport
+      parentRoute: typeof WithnavImport
+    }
     '/_withnav/recipes/': {
       id: '/_withnav/recipes/'
       path: '/recipes'
@@ -145,6 +158,7 @@ interface WithnavRouteChildren {
   WithnavGamesIndexRoute: typeof WithnavGamesIndexRoute
   WithnavIscolderthanIndexRoute: typeof WithnavIscolderthanIndexRoute
   WithnavJtHatIndexRoute: typeof WithnavJtHatIndexRoute
+  WithnavMattBirthdayIndexRoute: typeof WithnavMattBirthdayIndexRoute
   WithnavRecipesIndexRoute: typeof WithnavRecipesIndexRoute
   WithnavShortsIndexRoute: typeof WithnavShortsIndexRoute
   WithnavSnakeIndexRoute: typeof WithnavSnakeIndexRoute
@@ -155,6 +169,7 @@ const WithnavRouteChildren: WithnavRouteChildren = {
   WithnavGamesIndexRoute: WithnavGamesIndexRoute,
   WithnavIscolderthanIndexRoute: WithnavIscolderthanIndexRoute,
   WithnavJtHatIndexRoute: WithnavJtHatIndexRoute,
+  WithnavMattBirthdayIndexRoute: WithnavMattBirthdayIndexRoute,
   WithnavRecipesIndexRoute: WithnavRecipesIndexRoute,
   WithnavShortsIndexRoute: WithnavShortsIndexRoute,
   WithnavSnakeIndexRoute: WithnavSnakeIndexRoute,
@@ -170,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/games': typeof WithnavGamesIndexRoute
   '/iscolderthan': typeof WithnavIscolderthanIndexRoute
   '/jt-hat': typeof WithnavJtHatIndexRoute
+  '/matt-birthday': typeof WithnavMattBirthdayIndexRoute
   '/recipes': typeof WithnavRecipesIndexRoute
   '/shorts': typeof WithnavShortsIndexRoute
   '/snake': typeof WithnavSnakeIndexRoute
@@ -182,6 +198,7 @@ export interface FileRoutesByTo {
   '/games': typeof WithnavGamesIndexRoute
   '/iscolderthan': typeof WithnavIscolderthanIndexRoute
   '/jt-hat': typeof WithnavJtHatIndexRoute
+  '/matt-birthday': typeof WithnavMattBirthdayIndexRoute
   '/recipes': typeof WithnavRecipesIndexRoute
   '/shorts': typeof WithnavShortsIndexRoute
   '/snake': typeof WithnavSnakeIndexRoute
@@ -195,6 +212,7 @@ export interface FileRoutesById {
   '/_withnav/games/': typeof WithnavGamesIndexRoute
   '/_withnav/iscolderthan/': typeof WithnavIscolderthanIndexRoute
   '/_withnav/jt-hat/': typeof WithnavJtHatIndexRoute
+  '/_withnav/matt-birthday/': typeof WithnavMattBirthdayIndexRoute
   '/_withnav/recipes/': typeof WithnavRecipesIndexRoute
   '/_withnav/shorts/': typeof WithnavShortsIndexRoute
   '/_withnav/snake/': typeof WithnavSnakeIndexRoute
@@ -209,6 +227,7 @@ export interface FileRouteTypes {
     | '/games'
     | '/iscolderthan'
     | '/jt-hat'
+    | '/matt-birthday'
     | '/recipes'
     | '/shorts'
     | '/snake'
@@ -220,6 +239,7 @@ export interface FileRouteTypes {
     | '/games'
     | '/iscolderthan'
     | '/jt-hat'
+    | '/matt-birthday'
     | '/recipes'
     | '/shorts'
     | '/snake'
@@ -231,6 +251,7 @@ export interface FileRouteTypes {
     | '/_withnav/games/'
     | '/_withnav/iscolderthan/'
     | '/_withnav/jt-hat/'
+    | '/_withnav/matt-birthday/'
     | '/_withnav/recipes/'
     | '/_withnav/shorts/'
     | '/_withnav/snake/'
@@ -273,6 +294,7 @@ export const routeTree = rootRoute
         "/_withnav/games/",
         "/_withnav/iscolderthan/",
         "/_withnav/jt-hat/",
+        "/_withnav/matt-birthday/",
         "/_withnav/recipes/",
         "/_withnav/shorts/",
         "/_withnav/snake/"
@@ -292,6 +314,10 @@ export const routeTree = rootRoute
     },
     "/_withnav/jt-hat/": {
       "filePath": "_withnav/jt-hat/index.tsx",
+      "parent": "/_withnav"
+    },
+    "/_withnav/matt-birthday/": {
+      "filePath": "_withnav/matt-birthday/index.tsx",
       "parent": "/_withnav"
     },
     "/_withnav/recipes/": {
