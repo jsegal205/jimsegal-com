@@ -32,11 +32,13 @@ const IsMattsBirthday = () => {
   };
 
   const today = new Date();
-  const isTodayJune7 = today.getMonth() === 5 && today.getDate() === 7;
+  const isTodayBirthday =
+    (today.getMonth() === 5 && today.getDate() === 7) || // june 6
+    (today.getMonth() === 7 && today.getDate() === 9); // aug 9
 
   const cakeClass = [
     "h-20 w-20 dark:fill-slate-100",
-    isTodayJune7 ? "" : "rotate-180",
+    isTodayBirthday ? "" : "rotate-180",
   ].join(" ");
 
   return (
@@ -60,7 +62,7 @@ const IsMattsBirthday = () => {
           <div className="flex justify-center flex-row">
             <Icon className={cakeClass} type="birthday-cake" />
             <h2 className="text-6xl mt-3 mx-4">
-              {isTodayJune7 ? "YUP" : "Not so likely"}
+              {isTodayBirthday ? "YUP" : "Not so likely"}
             </h2>
             <Icon className={cakeClass} type="birthday-cake" />
           </div>
