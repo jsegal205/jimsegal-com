@@ -15,6 +15,11 @@ export const projects: Projects = sortBy(
       icon: "temperature",
     },
     { title: "Is JT wearing a hat?", route: "/jt-hat", icon: "cowboy-hat" },
+    {
+      title: "Is today Matt's birthday?",
+      route: "/matt-birthday",
+      icon: "birthday-cake",
+    },
     { title: "Snake Game", route: "/snake", icon: "snake" },
   ],
   "title",
