@@ -21,7 +21,7 @@ const IsMattsBirthday = () => {
     const interval = setInterval(() => {
       setIsChecking(false);
       setIsDoneChecking(true);
-    }, 2000); // rotate every 2 seconds
+    }, 2000); // simulate checking for 2 seconds
 
     return () => clearInterval(interval);
   }, [isChecking]);
