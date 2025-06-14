@@ -79,6 +79,17 @@ const IsMattsBirthday = () => {
               type="open-external"
             />
           </Link>
+
+          <div className="mt-4 text-sm">
+            Is the answer wrong? Open a{" "}
+            <Link
+              to={
+                "https://github.com/jsegal205/jimsegal-com/issues/new" as string
+              }
+            >
+              Github issue
+            </Link>
+          </div>
         </div>
       ) : isChecking ? (
         <div className="flex justify-center">
