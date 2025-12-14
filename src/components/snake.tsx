@@ -50,7 +50,7 @@ export const Snake = () => {
 
       // Check if the snake has eaten food
       if (newHead.x === food.x && newHead.y === food.y) {
-        setScore(score + 1);
+        setScore(s => s + 1);
         setFood({
           x: Math.floor(Math.random() * BOARD_SIZE),
           y: Math.floor(Math.random() * BOARD_SIZE),

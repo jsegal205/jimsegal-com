@@ -132,7 +132,7 @@ const ImageCarousel = () => {
       clearInterval(interval);
       clearInterval(progressInterval);
     };
-  }, [currentIndex]);
+  }, [currentIndex, imageRotationMS, progressUpdateMS]);
 
   return (
     <section className="relative flex flex-col max-w-[200px] min-w-[100px] md:max-w-[400px] md:min-w-[200px] overflow-hidden rounded-3xl border-2 border-slate-500">
