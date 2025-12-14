@@ -24,9 +24,9 @@ export const Nav = () => {
           type="button"
           className="space-y-1 py-3"
         >
-          {[...Array(3)].map((ele) => (
+          {[...Array(3)].map((_, index) => (
             <div
-              key={ele}
+              key={index}
               className="w-6 h-1 rounded bg-slate-900 dark:bg-slate-100"
             ></div>
           ))}
