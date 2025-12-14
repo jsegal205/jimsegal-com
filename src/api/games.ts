@@ -10,7 +10,7 @@ export type Game = {
 
 export type Games = Array<Game>;
 
-export const fetchAllGames = () => {
+export const useFetchAllGames = () => {
   return useQuery<Games>({
     queryKey: ["games"],
     queryFn: async (): Promise<Games> => {

@@ -6,6 +6,7 @@ const DarkModeContext = createContext<{
   toggleDarkMode: () => void;
 }>({ darkModeEnabled: false, toggleDarkMode: () => {} });
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useDarkModeContext = () => useContext(DarkModeContext);
 
 export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
@@ -13,11 +14,10 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
     "(prefers-color-scheme: dark)",
   ).matches;
   const [darkModeEnabled, setDarkModeEnabled] = useState(isSystemDark);
-  const toggleDarkMode = () => setDarkModeEnabled(!darkModeEnabled);
-
-  const htmlClasses = document.querySelector("html")!.classList;
+  const toggleDarkMode = () => setDarkModeEnabled((prev) => !prev);
 
   useEffect(() => {
+    const htmlClasses = document.querySelector("html")!.classList;
     if (darkModeEnabled) {
       htmlClasses.add("dark");
     } else {

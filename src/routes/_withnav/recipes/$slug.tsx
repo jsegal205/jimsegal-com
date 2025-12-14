@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Markdown from "react-markdown";
 
-import { fetchRecipeBySlug } from "@/api/recipes";
+import { useFetchRecipeBySlug } from "@/api/recipes";
 import { Error } from "@/components/error";
 import { Link } from "@/components/link";
 import { Loading } from "@/components/loading";
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/_withnav/recipes/$slug")({
 
 const Recipe = () => {
   const { slug } = Route.useParams();
-  const { isError, isPending, data, error } = fetchRecipeBySlug(slug);
+  const { isError, isPending, data, error } = useFetchRecipeBySlug(slug);
 
   if (isPending) {
     return <Loading />;
@@ -72,10 +72,12 @@ const CustomMarkdown = ({ children }: { children: string }) => (
   <Markdown
     components={{
       ul(props) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { node, ...rest } = props;
         return <ul className="pl-8 list-disc" {...rest} />;
       },
       ol(props) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { node, ...rest } = props;
         return <ul className="pl-8 list-decimal" {...rest} />;
       },

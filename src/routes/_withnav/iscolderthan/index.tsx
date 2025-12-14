@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
-import { fetchCurrentTemp, knownCoordinates } from "@/api/weather";
+import { useFetchCurrentTemp, knownCoordinates } from "@/api/weather";
 import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
 import { Button } from "@/components/button";
@@ -29,20 +29,20 @@ const IsColderThan = () => {
     isPending: chiIsPending,
     data: chiData,
     error: chiError,
-  } = fetchCurrentTemp(chiLat, chiLong);
+  } = useFetchCurrentTemp(chiLat, chiLong);
   const {
     isError: akIsError,
     isPending: akIsPending,
     data: akData,
     error: akError,
-  } = fetchCurrentTemp(akLat, akLong);
+  } = useFetchCurrentTemp(akLat, akLong);
 
   const {
     isError: locationIsError,
     isPending: locationIsPending,
     data: locationData,
     error: locationError,
-  } = fetchCurrentTemp(locationLat!, locationLong!, {
+  } = useFetchCurrentTemp(locationLat!, locationLong!, {
     enabled: getLocationData,
   });
 
@@ -127,7 +127,7 @@ const IsColderThan = () => {
             Let's find out
           </Button>
 
-          {Boolean(browserLocationBlocked) ? (
+          {browserLocationBlocked ? (
             <Error
               message={`${browserLocationBlocked}. Please allow browser to access
                 location information and try again.`}
