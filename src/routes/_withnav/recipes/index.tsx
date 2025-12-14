@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
-import { fetchAllRecipes } from "@/api/recipes";
+import { useFetchAllRecipes } from "@/api/recipes";
 import { type Recipe, type Recipes } from "@/api/recipes";
 import { Error } from "@/components/error";
 import { Link } from "@/components/link";
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/_withnav/recipes/")({
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState<Recipes>([]);
-  const { isError, isPending, data, error } = fetchAllRecipes();
+  const { isError, isPending, data, error } = useFetchAllRecipes();
 
   useEffect(() => {
     setRecipes(data || []);

@@ -49,7 +49,7 @@ export const calculateShortsWearingProbability = ({
     day: "numeric",
   };
 
-  let base = 50 + dateProbability(d) + tempProbability(dailyMaxTemp);
+  const base = 50 + dateProbability(d) + tempProbability(dailyMaxTemp);
   let probability = base;
 
   // it's never 100% or 0%, there's always a chance

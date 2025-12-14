@@ -12,11 +12,11 @@ export type Recipe = {
 
 export type Recipes = Array<Recipe>;
 
-export const fetchAllRecipes = () => {
-  return allRecipes();
+export const useFetchAllRecipes = () => {
+  return useAllRecipes();
 };
-export const fetchRecipeBySlug = (slug: string) => {
-  return allRecipes({
+export const useFetchRecipeBySlug = (slug: string) => {
+  return useAllRecipes({
     selectCB: (data: Recipes) => {
       return data.filter(
         (recipe) => recipe.slug.toLowerCase() === slug.toLowerCase(),
@@ -25,7 +25,7 @@ export const fetchRecipeBySlug = (slug: string) => {
   });
 };
 
-const allRecipes = ({ selectCB } = { selectCB: (data: Recipes) => data }) => {
+const useAllRecipes = ({ selectCB } = { selectCB: (data: Recipes) => data }) => {
   return useQuery<Recipes>({
     queryKey: ["recipes"],
     queryFn: async (): Promise<Recipes> => {

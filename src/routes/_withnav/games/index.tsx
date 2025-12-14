@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
-import { fetchAllGames } from "@/api/games";
+import { useFetchAllGames } from "@/api/games";
 import { type Game, type Games } from "@/api/games";
 import { Button } from "@/components/button";
 import { Error } from "@/components/error";
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_withnav/games/")({
 const Games = () => {
   const [games, setGames] = useState<Games>([]);
   const [isFiltered, setIsFiltered] = useState<boolean>(false);
-  const { isError, isPending, data, error } = fetchAllGames();
+  const { isError, isPending, data, error } = useFetchAllGames();
 
   useEffect(() => {
     setGames(data || []);

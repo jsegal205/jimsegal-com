@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { calculateShortsWearingProbability } from "@/api/shorts";
 import { type Criteria } from "@/api/shorts";
-import { fetchDailyMaxTemp, knownCoordinates } from "@/api/weather";
+import { useFetchDailyMaxTemp, knownCoordinates } from "@/api/weather";
 import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
 
@@ -18,7 +18,7 @@ const Shorts = () => {
   const {
     chicago: { lat, long },
   } = knownCoordinates;
-  const { isError, isPending, data, error } = fetchDailyMaxTemp(lat, long);
+  const { isError, isPending, data, error } = useFetchDailyMaxTemp(lat, long);
 
   useEffect(() => {
     if (data?.maxTemp) {

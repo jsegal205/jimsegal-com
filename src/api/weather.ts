@@ -17,7 +17,7 @@ export const knownCoordinates = {
   chicago: { lat: 41.8369, long: -87.6847 },
 };
 
-export const fetchDailyMaxTemp = (lat: number, long: number) => {
+export const useFetchDailyMaxTemp = (lat: number, long: number) => {
   return useQuery({
     queryKey: ["daily-max-temp", lat, long],
     queryFn: async (): Promise<APIMaxDailyTempResponse> => {
@@ -39,7 +39,7 @@ export const fetchDailyMaxTemp = (lat: number, long: number) => {
   });
 };
 
-export const fetchCurrentTemp = (lat: number, long: number, opts = {}) => {
+export const useFetchCurrentTemp = (lat: number, long: number, opts = {}) => {
   return useQuery({
     queryKey: ["current-temp", lat, long],
     queryFn: async (): Promise<APICurrentTempResponse> => {
