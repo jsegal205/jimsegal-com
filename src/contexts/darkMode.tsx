@@ -13,7 +13,7 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
     "(prefers-color-scheme: dark)",
   ).matches;
   const [darkModeEnabled, setDarkModeEnabled] = useState(isSystemDark);
-  const toggleDarkMode = () => setDarkModeEnabled(!darkModeEnabled);
+  const toggleDarkMode = () => setDarkModeEnabled(prev => !prev);
 
   const htmlClasses = document.querySelector("html")!.classList;
 
