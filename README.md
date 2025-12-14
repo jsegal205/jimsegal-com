@@ -2,23 +2,62 @@
 
 Portfolio for all things Jim. Please enjoy yourself.
 
-## Setup
+## Prerequisites
 
-This project uses pnpm as the package manager. Install that first: [https://pnpm.io/installation](https://pnpm.io/installation)
+This project uses [asdf](https://asdf-vm.com/) for version management. The `.tool-versions` file specifies the required Node.js and pnpm versions.
 
-Then run:
+Install asdf and the required plugins:
 
 ```sh
-pnpm i
+# Install asdf (see https://asdf-vm.com/guide/getting-started.html)
+
+# Add plugins
+asdf plugin add nodejs
+asdf plugin add pnpm
+
+# Install versions from .tool-versions
+asdf install
+```
+
+## Setup
+
+Install dependencies:
+
+```sh
+pnpm install
 ```
 
 ## Development
+
+Start the development server:
 
 ```sh
 pnpm run dev
 ```
 
-Then navigate to the route provided in console.
+Then navigate to the route provided in console (usually http://localhost:5173).
+
+## Common Commands
+
+```sh
+# Build for production
+pnpm run build
+
+# Preview production build locally
+pnpm run preview
+
+# Run linter
+pnpm run lint
+
+# Format code with Prettier
+pnpm run prettier
+
+# Check Prettier formatting without making changes
+pnpm run check-prettier
+
+# Install dependencies (frozen lockfile for CI)
+pnpm run ci
+```
 
 ## Live site
 
