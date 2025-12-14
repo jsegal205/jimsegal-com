@@ -25,7 +25,9 @@ export const useFetchRecipeBySlug = (slug: string) => {
   });
 };
 
-const useAllRecipes = ({ selectCB } = { selectCB: (data: Recipes) => data }) => {
+const useAllRecipes = (
+  { selectCB } = { selectCB: (data: Recipes) => data },
+) => {
   return useQuery<Recipes>({
     queryKey: ["recipes"],
     queryFn: async (): Promise<Recipes> => {

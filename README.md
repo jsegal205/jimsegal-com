@@ -79,7 +79,6 @@ I knew this was a mess and needed to be consolidated. I knew this had to be rewr
 Previous attempts to rewrite:
 
 - One of my attemps to was actually a long running feature branch:
-
   - [https://github.com/jsegal205/jimsegal.com/pull/32](https://github.com/jsegal205/jimsegal.com/pull/32)
 
 - Additional rewrite in elixir until I realized I don't need all the overhead of a full server and database for what I'm doing with the site now.
