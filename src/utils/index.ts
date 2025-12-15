@@ -16,3 +16,5 @@ export const sortBy = <T, K extends keyof T>(array: T[], key: K): T[] => {
 
   return sorted;
 };
+
+export { fahrenheitToCelsius, formatTemperatureDual } from "./temperature";
