@@ -5,6 +5,7 @@ import { useFetchCurrentTemp, knownCoordinates } from "@/api/weather";
 import { Error } from "@/components/error";
 import { Loading } from "@/components/loading";
 import { Button } from "@/components/button";
+import { formatTemperatureDual } from "@/utils/temperature";
 
 export const Route = createFileRoute("/_withnav/iscolderthan/")({
   component: () => <IsColderThan />,
@@ -171,6 +172,7 @@ const LocationCurrentTemp = ({
   currentTemp: number | undefined;
 }) => (
   <label className="block">
-    Current temperature in {city}: {currentTemp} °F
+    Current temperature in {city}:{" "}
+    {currentTemp !== undefined ? formatTemperatureDual(currentTemp) : "N/A"}
   </label>
 );

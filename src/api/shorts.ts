@@ -1,3 +1,5 @@
+import { formatTemperatureDual } from "@/utils/temperature";
+
 export type Criteria = Array<{ name: string; value: string }>;
 
 type ShortsProbabilityArgs = {
@@ -70,7 +72,7 @@ export const calculateShortsWearingProbability = ({
       },
       {
         name: "Today's forecasted high temperature",
-        value: `${dailyMaxTemp} °F`,
+        value: formatTemperatureDual(dailyMaxTemp),
       },
     ],
   };
