@@ -34,6 +34,7 @@ const IsMattsBirthday = () => {
   const today = new Date();
   const isTodayBirthday =
     (today.getMonth() === 5 && today.getDate() === 7) || // june 6
+    (today.getMonth() === 4 && today.getDate() === 2) || // may 2
     (today.getMonth() === 7 && today.getDate() === 9); // aug 9
 
   const cakeClass = [
